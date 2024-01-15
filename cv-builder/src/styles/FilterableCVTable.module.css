@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content {
+  width: 100%;
+}
+
+.heading {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.options ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+@media (min-width: 650px) {
+  .options ul {
+    justify-content: flex-start;
+  }
+}
