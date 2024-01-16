@@ -8,10 +8,10 @@
   justify-content: center;
 }
 
-li + li {
+.footerLi + .footerLi {
   margin-left: 1rem;
 }
 
-p + p {
+.footerP + .footerP {
   margin-left: 2rem;
 }
