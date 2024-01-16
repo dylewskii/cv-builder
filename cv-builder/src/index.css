@@ -1,6 +1,6 @@
 :root {
   --light-white: #ffffff;
-  --light-grey: #f9f9f9;
+  --light-cream: #d6ccc2;
   --dark-black: #1a1a1a;
   --dark-active: #747bff;
 
@@ -17,9 +17,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.header {
-  font-size: 3rem;
+body {
+  overflow-x: hidden;
 }
+
+a {
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--dark-active);
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -31,9 +40,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: var(--dark-active);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -44,10 +55,8 @@ button:focus-visible {
     color: var(--dark-black);
     background-color: var(--light-white);
   }
-  a:hover {
-    color: var(--dark-active);
-  }
+
   button {
-    background-color: var(--light-grey);
+    background-color: var(--light-cream);
   }
 }
