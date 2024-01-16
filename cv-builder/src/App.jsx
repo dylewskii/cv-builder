@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./components/Header";
 import FilterableCVTable from "./components/FilterableCVTable";
 import CV from "./components/CV";
