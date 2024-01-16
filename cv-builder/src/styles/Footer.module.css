@@ -1,0 +1,17 @@
+.footerWrapper {
+  width: 100%;
+}
+
+.footerNav > *,
+.footerBottom {
+  display: flex;
+  justify-content: center;
+}
+
+li + li {
+  margin-left: 1rem;
+}
+
+p + p {
+  margin-left: 2rem;
+}
