@@ -1,3 +1,4 @@
+/* Root */
 :root {
   --light-white: #ffffff;
   --light-cream: #d6ccc2;
@@ -17,9 +18,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
 body {
+  min-height: 100vh;
   overflow-x: hidden;
 }
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+/* Base */
 
 a {
   cursor: pointer;
