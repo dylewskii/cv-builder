@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  width: min(900px, 100%);
+  /* max-width: 900px;
+  width: 100%; */
+  margin: 0 auto;
+  gap: 1.5rem;
+}
+
+.wrapper + .wrapper {
+  padding-top: 2rem;
+}
+
+.cvPreview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  min-width: 150px;
+  min-height: 250px;
+}
+
+.cvOptions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: left;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  padding: 7px 0;
+}
+
+.name {
+  font-size: 2rem;
+  margin: 0;
+}
