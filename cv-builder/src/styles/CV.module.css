@@ -18,6 +18,7 @@
   border: 1px solid white;
   min-width: 150px;
   min-height: 250px;
+  cursor: pointer;
 }
 
 .cvOptions {
@@ -27,6 +28,10 @@
   flex-direction: column;
   flex-grow: 1;
   text-align: left;
+}
+
+.cvNav {
+  margin-top: 2rem;
 }
 
 .cvNav ul {
