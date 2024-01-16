@@ -29,12 +29,11 @@
   text-align: left;
 }
 
-nav ul {
-  list-style: none;
+.cvNav ul {
   padding: 0;
 }
 
-nav ul li {
+.cvNav ul li {
   padding: 7px 0;
 }
 

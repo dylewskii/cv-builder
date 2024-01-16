@@ -10,7 +10,7 @@ export default function CV() {
         <div className={cvCSS.cvOptions}>
           <p className={cvCSS.name}>Jon Jones</p>
           <p>Created: </p>
-          <nav>
+          <nav className={cvCSS.cvNav}>
             <ul>
               <li>
                 <a>Preview</a>
