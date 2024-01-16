@@ -1,13 +1,9 @@
-.wrapper {
+.cvContainer {
   display: flex;
-  width: min(900px, 100%);
-  /* max-width: 900px;
-  width: 100%; */
-  margin: 0 auto;
   gap: 1.5rem;
 }
 
-.wrapper + .wrapper {
+.cvContainer + .cvContainer {
   padding-top: 2rem;
 }
 
@@ -42,7 +38,7 @@
   padding: 7px 0;
 }
 
-.name {
+.cvName {
   font-size: 2rem;
   margin: 0;
 }

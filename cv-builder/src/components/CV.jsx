@@ -3,12 +3,12 @@ import cvCSS from "../styles/CV.module.css";
 export default function CV() {
   return (
     <main>
-      <section className={cvCSS.wrapper}>
+      <section className={cvCSS.cvContainer}>
         <div className={cvCSS.cvPreview}>
           <img alt="CV preview"></img>
         </div>
         <div className={cvCSS.cvOptions}>
-          <p className={cvCSS.name}>Jon Jones</p>
+          <p className={cvCSS.cvName}>Jon Jones</p>
           <p>Created: </p>
           <nav className={cvCSS.cvNav}>
             <ul>
@@ -29,7 +29,7 @@ export default function CV() {
         </div>
       </section>
 
-      <section className={cvCSS.wrapper}>
+      <section className={cvCSS.cvContainer}>
         <div className={cvCSS.cvPreview}>
           <svg
             className={cvCSS.plusIcon}
@@ -45,7 +45,7 @@ export default function CV() {
           </svg>
         </div>
         <div className={cvCSS.cvOptions}>
-          <p className={cvCSS.name}>Create a CV</p>
+          <p className={cvCSS.cvName}>Create a CV</p>
           <p>
             Create a tailored CV for each job application - increase your
             chances of getting hired!
