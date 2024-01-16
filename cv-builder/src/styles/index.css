@@ -48,6 +48,14 @@ ul {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--light-white);
+}
+
 /* Base */
 
 a {
