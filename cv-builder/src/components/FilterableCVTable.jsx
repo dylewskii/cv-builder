@@ -2,10 +2,10 @@ import tableCSS from "../styles/FilterableCVTable.module.css";
 
 export default function FilterableCVTable() {
   return (
-    <div className={tableCSS.wrapper}>
-      <div className={tableCSS.content}>
-        <h2 className={tableCSS.heading}>All Resumes</h2>
-        <nav className={tableCSS.options}>
+    <div className={tableCSS.content}>
+      <h2 className={tableCSS.heading}>All Resumes</h2>
+      <div className={tableCSS.options}>
+        <nav className={tableCSS.optionsNav}>
           <ul>
             <li>
               <a href="">Resumes</a>
@@ -15,6 +15,7 @@ export default function FilterableCVTable() {
             </li>
           </ul>
         </nav>
+        <button className={tableCSS.btn}> &#43; Create CV</button>
       </div>
     </div>
   );

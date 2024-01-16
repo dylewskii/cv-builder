@@ -1,22 +1,45 @@
 .content {
+  position: relative;
   width: 100%;
+  padding: 2rem;
 }
 
 .heading {
-  font-size: 3rem;
+  font-size: 2.2rem;
   margin: 1rem 0;
 }
 
-.options ul {
+.optionsNav ul {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2rem;
-  list-style: none;
-  padding: 0;
 }
 
-@media (min-width: 650px) {
-  .options ul {
-    justify-content: flex-start;
+.btn {
+  position: absolute;
+  top: 40%;
+  right: 10%;
+  padding: 1em 2em;
+}
+
+@media (max-width: 650px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .optionsNav ul {
+    justify-content: center;
+  }
+
+  .btn {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 1em 6em;
+    margin: 1em 0;
   }
 }
