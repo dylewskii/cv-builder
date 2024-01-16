@@ -2,11 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 900px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 1rem;
 }
 
-.btn {
-  padding: 0.5rem 2em;
-  height: 3.5rem;
+.header > h1 {
+  font-size: clamp(2rem, 0.8571rem + 4.5714vw, 4rem);
+}
+
+.profileIcon {
+  cursor: pointer;
+}
+
+.profileIcon:hover {
+  color: var(--dark-active);
 }
