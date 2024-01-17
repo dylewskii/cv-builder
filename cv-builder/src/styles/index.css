@@ -58,6 +58,13 @@ a:visited {
 
 /* Base */
 
+a,
+button,
+img,
+svg {
+  transition: 0.25s ease-in-out;
+}
+
 a {
   cursor: pointer;
 }
@@ -75,7 +82,6 @@ button {
   font-family: inherit;
   background-color: var(--dark-black);
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
 button:hover {

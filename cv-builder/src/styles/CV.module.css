@@ -13,7 +13,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
+  border: 2px solid var(--dark-black);
+  border-radius: 5px;
   min-width: 150px;
   min-height: 250px;
   cursor: pointer;
@@ -47,4 +48,21 @@
 .cvName {
   font-size: 2rem;
   margin: 0;
+}
+
+.cvPreview,
+.cvPreview .plusIcon {
+  transition: transform 0.25s ease-in-out;
+}
+
+.cvPreview:hover {
+  transform: scale(107%);
+}
+
+.cvPreview:hover .plusIcon {
+  transform: scale(1.5) rotate(90deg);
+}
+
+.cvPreview:hover .plusIconPath {
+  fill: var(--dark-active);
 }
