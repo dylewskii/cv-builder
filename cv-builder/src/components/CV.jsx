@@ -1,6 +1,7 @@
 import cvCSS from "../styles/CV.module.css";
+// import { useState } from "react";
 
-export default function CV() {
+export default function CV({ handleCreateClick }) {
   return (
     <main className={cvCSS.cvContainer}>
       <section className={cvCSS.cvSection}>
@@ -30,7 +31,7 @@ export default function CV() {
       </section>
 
       <section className={cvCSS.cvSection}>
-        <div className={cvCSS.cvPreview}>
+        <div className={cvCSS.cvPreview} onClick={handleCreateClick}>
           <svg
             className={cvCSS.plusIcon}
             xmlns="http://www.w3.org/2000/svg"
