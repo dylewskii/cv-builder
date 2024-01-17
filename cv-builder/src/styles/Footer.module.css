@@ -1,5 +1,7 @@
-.footerWrapper {
+.footer {
   width: 100%;
+  margin-top: auto;
+  padding: 1rem;
 }
 
 .footerNav > *,
