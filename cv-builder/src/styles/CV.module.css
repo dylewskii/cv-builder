@@ -1,10 +1,12 @@
 .cvContainer {
-  display: flex;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
-.cvContainer + .cvContainer {
-  padding-top: 2rem;
+.cvSection {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
 .cvPreview {
@@ -24,6 +26,10 @@
   flex-direction: column;
   flex-grow: 1;
   text-align: left;
+}
+
+.cvOptions:last-of-type {
+  justify-content: center;
 }
 
 .cvNav {

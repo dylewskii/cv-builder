@@ -2,8 +2,8 @@ import cvCSS from "../styles/CV.module.css";
 
 export default function CV() {
   return (
-    <main>
-      <section className={cvCSS.cvContainer}>
+    <main className={cvCSS.cvContainer}>
+      <section className={cvCSS.cvSection}>
         <div className={cvCSS.cvPreview}>
           <img alt="CV preview"></img>
         </div>
@@ -29,14 +29,14 @@ export default function CV() {
         </div>
       </section>
 
-      <section className={cvCSS.cvContainer}>
+      <section className={cvCSS.cvSection}>
         <div className={cvCSS.cvPreview}>
           <svg
             className={cvCSS.plusIcon}
             xmlns="http://www.w3.org/2000/svg"
-            height="24"
+            height="48"
             viewBox="0 -960 960 960"
-            width="24"
+            width="48"
           >
             <path
               fill="white"
