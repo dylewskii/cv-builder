@@ -1,4 +1,5 @@
 import footerCSS from "../styles/Footer.module.css";
+import { FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
 
 export default function Footer() {
   const date = new Date();
@@ -10,12 +11,15 @@ export default function Footer() {
         <nav className={footerCSS.footerNav}>
           <ul>
             <li className={footerCSS.footerLi}>
+              <FaTwitter />
               <a href="">Twitter</a>
             </li>
             <li className={footerCSS.footerLi}>
+              <FaInstagram />
               <a href="">Instagram</a>
             </li>
             <li className={footerCSS.footerLi}>
+              <FaFacebook />
               <a href="">Facebook</a>
             </li>
           </ul>

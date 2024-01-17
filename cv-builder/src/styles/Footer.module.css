@@ -8,6 +8,14 @@
   justify-content: center;
 }
 
+.footerLi {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
 .footerLi + .footerLi {
   margin-left: 1rem;
 }
