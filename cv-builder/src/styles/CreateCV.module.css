@@ -7,6 +7,7 @@
 .previewPanel {
   width: 100%;
   min-width: 200px;
+  /* height: clamp(350px, 100%, 70vh); */
   height: 100%;
   min-height: 350px;
   border: 1px solid white;
