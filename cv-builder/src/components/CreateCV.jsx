@@ -2,27 +2,7 @@ import { useState } from "react";
 import createCSS from "../styles/CreateCV.module.css";
 
 export default function CreateCV() {
-  return (
-    <div className={createCSS.createContainer}>
-      <section className={createCSS.previewPanel}></section>
-      <section className={createCSS.editPanel}>
-        <form>
-          <PersonalDetails />
-
-          <ProfessionalSummary />
-
-          <EmploymentHistory />
-
-          <Education />
-
-          <References />
-        </form>
-      </section>
-    </div>
-  );
-}
-
-function PersonalDetails() {
+  // Personal Details State
   const [details, setDetails] = useState({
     fName: "",
     lName: "",
@@ -31,6 +11,55 @@ function PersonalDetails() {
     city: "",
     country: "",
   });
+
+  // Professional Summary State
+  const [summary, setSummary] = useState("");
+  // Employment History State
+  const [history, setHistory] = useState({
+    jobTitle: "",
+    employer: "",
+    dateRange: "",
+    city: "",
+    description: "",
+  });
+  // Education State
+  const [education, setEducation] = useState({
+    school: "",
+    degree: "",
+    dateRange: "",
+    city: "",
+    description: "",
+  });
+  // References State
+  const [references, setReferences] = useState({
+    hide: false,
+    referent: "",
+    company: "",
+    phone: "",
+    email: "",
+  });
+
+  return (
+    <div className={createCSS.createContainer}>
+      <section className={createCSS.previewPanel}></section>
+      <section className={createCSS.editPanel}>
+        <form>
+          <PersonalDetails details={details} setDetails={setDetails} />
+
+          <ProfessionalSummary summary={summary} setSummary={summary} />
+
+          <EmploymentHistory history={history} setHistory={setHistory} />
+
+          <Education education={education} setEducation={setEducation} />
+
+          <References references={references} setReferences={setReferences} />
+        </form>
+      </section>
+    </div>
+  );
+}
+
+function PersonalDetails({ details, setDetails }) {
   return (
     <>
       <h3>Personal Details</h3>
@@ -80,8 +109,7 @@ function PersonalDetails() {
   );
 }
 
-function ProfessionalSummary() {
-  const [summary, setSummary] = useState("");
+function ProfessionalSummary({ summary, setSummary }) {
   return (
     <>
       <h3>Professional Summary</h3>
@@ -102,14 +130,7 @@ function ProfessionalSummary() {
   );
 }
 
-function EmploymentHistory() {
-  const [history, setHistory] = useState({
-    jobTitle: "",
-    employer: "",
-    dateRange: "",
-    city: "",
-    description: "",
-  });
+function EmploymentHistory({ history, setHistory }) {
   return (
     <>
       <h3>Employment History</h3>
@@ -156,14 +177,7 @@ function EmploymentHistory() {
   );
 }
 
-function Education() {
-  const [education, setEducation] = useState({
-    school: "",
-    degree: "",
-    dateRange: "",
-    city: "",
-    description: "",
-  });
+function Education({ education, setEducation }) {
   return (
     <>
       <h3>Education</h3>
@@ -215,14 +229,7 @@ function Education() {
   );
 }
 
-function References() {
-  const [references, setReferences] = useState({
-    hide: false,
-    referent: "",
-    company: "",
-    phone: "",
-    email: "",
-  });
+function References({ references, setReferences }) {
   return (
     <>
       <h3>References</h3>
