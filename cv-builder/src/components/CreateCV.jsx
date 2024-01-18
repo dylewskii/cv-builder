@@ -46,10 +46,14 @@ export default function CreateCV() {
           <h4>
             {details.fName} {details.lName}
           </h4>
-          <p>{details.email}</p>
-          <p>{details.tel}</p>
-          <p>{details.city}</p>
-          <p>{details.country}</p>
+          <div className={createCSS.detailsLocation}>
+            <p className={createCSS.detailsCity}>{details.city}</p>
+            <p className={createCSS.detailsCountry}>{details.country}</p>
+          </div>
+          <div className={createCSS.detailsContact}>
+            <p className={createCSS.detailsEmail}>{details.email}</p>
+            <p className={createCSS.detailsTel}>{details.tel}</p>
+          </div>
         </div>
         <div className={createCSS.previewSummary}>
           <h4>Profile</h4>
