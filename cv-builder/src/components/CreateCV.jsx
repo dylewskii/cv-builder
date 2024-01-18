@@ -41,12 +41,63 @@ export default function CreateCV() {
 
   return (
     <div className={createCSS.createContainer}>
-      <section className={createCSS.previewPanel}></section>
+      <section className={createCSS.previewPanel}>
+        <div className={createCSS.previewDetails}>
+          <h4>
+            {details.fName} {details.lName}
+          </h4>
+          <p>{details.email}</p>
+          <p>{details.tel}</p>
+          <p>{details.city}</p>
+          <p>{details.country}</p>
+        </div>
+        <div className={createCSS.previewSummary}>
+          <h4>Profile</h4>
+          <p>{summary}</p>
+        </div>
+        <div className={createCSS.previewHistory}>
+          <h4>Employment History</h4>
+          <div className={createCSS.employerBox}>
+            <h5>
+              {history.jobTitle} {history.employer} {history.dateRange}
+            </h5>
+            <ul>
+              <li>Task 1</li>
+              <li>Task 2</li>
+              <li>Task 3</li>
+            </ul>
+          </div>
+        </div>
+        <div className={createCSS.previewEducation}>
+          <h4>Education</h4>
+          <div className={createCSS.educationBox}>
+            <h5>
+              {education.school} {education.degree} {education.dateRange}
+            </h5>
+            <p>{education.city}</p>
+            <p>{education.description}</p>
+          </div>
+        </div>
+        <div className={createCSS.previewReferences}>
+          <h4>References</h4>
+          {!references.hide ? (
+            <p>References available upon request</p>
+          ) : (
+            <div className={createCSS.referenceBox}>
+              <h5>
+                {references.referent} {references.company}
+              </h5>
+              <p>{references.email}</p>
+              <p>{references.phone}</p>
+            </div>
+          )}
+        </div>
+      </section>
       <section className={createCSS.editPanel}>
         <form>
           <PersonalDetails details={details} setDetails={setDetails} />
 
-          <ProfessionalSummary summary={summary} setSummary={summary} />
+          <ProfessionalSummary summary={summary} setSummary={setSummary} />
 
           <EmploymentHistory history={history} setHistory={setHistory} />
 
