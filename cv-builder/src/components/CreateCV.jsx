@@ -227,12 +227,16 @@ function References() {
     <>
       <h3>References</h3>
 
-      <label>Available upon request only.</label>
-      <input
-        type="radio"
-        value={references.hide}
-        onChange={(e) => setReferences({ ...references, hide: e.target.value })}
-      />
+      <div className={createCSS.refs}>
+        <label>Available upon request only.</label>
+        <input
+          type="radio"
+          value={references.hide}
+          onChange={(e) =>
+            setReferences({ ...references, hide: e.target.value })
+          }
+        />
+      </div>
 
       <label>Referent&#39;s Full Name</label>
       <input
