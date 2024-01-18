@@ -1,20 +1,88 @@
 .createContainer {
   display: flex;
+  flex-direction: column;
   padding: 2rem;
-  gap: 1rem;
+  gap: 3rem;
+
+  border: 1px solid red;
 }
+
+/* .previewPanel {
+  width: calc(70vh + 1rem);
+  min-width: 200px;
+  height: clamp(350px, 100%, 70vh);
+  height: calc(65vh + 1rem);
+  min-height: 350px;
+  border: 1px solid white;
+} */
 
 .previewPanel {
   width: 100%;
   min-width: 200px;
-  /* height: clamp(350px, 100%, 70vh); */
-  height: 100%;
+  height: 450px;
   min-height: 350px;
+  border-radius: 5px;
   border: 1px solid white;
 }
 
 .editPanel form {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+}
+
+.editPanel form h3:not(:first-of-type) {
+  margin-top: 2.5rem;
+}
+
+.editPanel form h3 {
+  font-size: 1.5rem;
+}
+
+h3 + label,
+p + label {
+  margin-top: 1.5rem;
+}
+
+/* Every label not inside a div */
+:not(div) > label {
+  margin-bottom: 0.2rem;
+}
+
+.editPanel form input:not([type="radio"]) {
+  margin-bottom: 0.8rem;
+}
+
+.editPanel form input,
+.editPanel form textarea {
+  padding: 1em;
+  border: none;
+}
+
+.editPanel form textarea {
+  margin-top: 1rem;
+}
+
+.refs {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+@media (min-width: 750px) {
+  .createContainer {
+    flex-direction: row;
+  }
+
+  .previewPanel {
+    width: calc(70% - 1rem);
+    min-width: 350px;
+    height: calc(65vh + 1rem);
+  }
+
+  .editPanel form {
+    flex-grow: 1;
+  }
 }
