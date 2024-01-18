@@ -3,18 +3,7 @@
   flex-direction: column;
   padding: 2rem;
   gap: 3rem;
-
-  border: 1px solid red;
 }
-
-/* .previewPanel {
-  width: calc(70vh + 1rem);
-  min-width: 200px;
-  height: clamp(350px, 100%, 70vh);
-  height: calc(65vh + 1rem);
-  min-height: 350px;
-  border: 1px solid white;
-} */
 
 .previewPanel {
   width: 100%;
