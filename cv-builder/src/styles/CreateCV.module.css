@@ -122,6 +122,30 @@ p + label {
   padding: 1rem 0;
 }
 
+.employerEntry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--dark-black);
+  margin: 1rem auto;
+  padding: 1.5em;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.employerEntry div {
+  display: flex;
+  gap: 1rem;
+}
+
+.employerEntry div > * {
+  cursor: pointer;
+}
+
+.employerEntry div > *:hover {
+  color: var(--dark-active);
+}
+
 @media (min-width: 750px) {
   .createContainer {
     flex-direction: row;
