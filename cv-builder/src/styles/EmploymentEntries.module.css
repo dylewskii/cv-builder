@@ -1,4 +1,4 @@
-.employerEntry {
+.employmentEntry {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,15 +9,15 @@
   border-radius: 5px;
 }
 
-.employerEntry div {
+.employmentEntry div {
   display: flex;
   gap: 1.5rem;
 }
 
-.employerEntry div > * {
+.employmentEntry div > * {
   cursor: pointer;
 }
 
-.employerEntry div > *:hover {
+.employmentEntry div > *:hover {
   color: var(--dark-active);
 }
