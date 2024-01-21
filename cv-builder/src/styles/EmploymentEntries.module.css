@@ -1,0 +1,23 @@
+.employerEntry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--dark-black);
+  margin: 1rem auto;
+  padding: 1.5em;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.employerEntry div {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.employerEntry div > * {
+  cursor: pointer;
+}
+
+.employerEntry div > *:hover {
+  color: var(--dark-active);
+}
