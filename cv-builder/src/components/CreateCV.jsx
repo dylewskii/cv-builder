@@ -16,7 +16,7 @@ export default function CreateCV() {
   // Professional Summary State
   const [summary, setSummary] = useState("");
   // Employment History State
-  const [employment, setEmployment] = useState([{}, {}]);
+  const [employment, setEmployment] = useState([]);
   const [draftEmployment, setDraftEmployment] = useState({
     id: crypto.randomUUID(),
     jobTitle: "",
