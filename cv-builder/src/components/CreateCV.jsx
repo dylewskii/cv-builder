@@ -1,5 +1,6 @@
 import { useState } from "react";
 import createCSS from "../styles/CreateCV.module.css";
+import EmploymentEntries from "./EmploymentEntries";
 
 export default function CreateCV() {
   // Personal Details State
@@ -15,30 +16,59 @@ export default function CreateCV() {
   // Professional Summary State
   const [summary, setSummary] = useState("");
   // Employment History State
-  const [history, setHistory] = useState({
+  const [employment, setEmployment] = useState([{}, {}]);
+  const [draftEmployment, setDraftEmployment] = useState({
+    id: crypto.randomUUID(),
     jobTitle: "",
     employer: "",
     dateRange: "",
     city: "",
     description: "",
   });
-  // Education State
-  const [education, setEducation] = useState({
-    school: "",
-    degree: "",
-    dateRange: "",
-    city: "",
-    description: "",
-  });
-  // References State
-  const [references, setReferences] = useState({
-    hide: false,
-    referent: "",
-    company: "",
-    phone: "",
-    email: "",
-  });
 
+  // Education State
+  const [education, setEducation] = useState([
+    {
+      id: crypto.randomUUID(),
+      school: "",
+      degree: "",
+      dateRange: "",
+      city: "",
+      description: "",
+    },
+  ]);
+  // References State
+  const [references, setReferences] = useState([
+    {
+      id: crypto.randomUUID(),
+      hide: false,
+      referent: "",
+      company: "",
+      phone: "",
+      email: "",
+    },
+  ]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setDraftEmployment((prevDraft) => ({
+      ...prevDraft,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setEmployment((prevEmployment) => [...prevEmployment, draftEmployment]);
+    setDraftEmployment({
+      id: crypto.randomUUID(),
+      jobTitle: "",
+      employer: "",
+      dateRange: "",
+      city: "",
+      description: "",
+    });
+  };
   return (
     <div className={createCSS.createContainer}>
       <section className={createCSS.previewPanel}>
@@ -62,14 +92,14 @@ export default function CreateCV() {
         <div className={createCSS.previewHistory}>
           <h4>Employment History</h4>
           <div className={createCSS.employerBox}>
-            <h5>
-              {history.jobTitle} {history.employer} {history.dateRange}
-            </h5>
+            {/* <h5>{employment.jobTitle}</h5>
+            <p>{employment.employer}</p>
+            <p>{employment.dateRange}</p>
             <ul>
               <li>Task 1</li>
               <li>Task 2</li>
               <li>Task 3</li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div className={createCSS.previewEducation}>
@@ -103,7 +133,14 @@ export default function CreateCV() {
 
           <ProfessionalSummary summary={summary} setSummary={setSummary} />
 
-          <EmploymentHistory history={history} setHistory={setHistory} />
+          <EmploymentHistory
+            draftEmployment={draftEmployment}
+            setDraftEmployment={setDraftEmployment}
+            employment={employment}
+            setEmployment={setEmployment}
+            handleInputChange={handleInputChange}
+            handleSubmit={handleSubmit}
+          />
 
           <Education education={education} setEducation={setEducation} />
 
@@ -185,49 +222,68 @@ function ProfessionalSummary({ summary, setSummary }) {
   );
 }
 
-function EmploymentHistory({ history, setHistory }) {
+function EmploymentHistory({
+  draftEmployment,
+  setDraftEmployment,
+  employment,
+  setEmployment,
+  handleInputChange,
+  handleSubmit,
+}) {
+  const employmentFilled = employment !== null || employment.length !== 0;
   return (
     <>
       <h3>Employment History</h3>
       <p>Show your relevant experience.</p>
 
+      {employmentFilled ? (
+        <EmploymentEntries
+          employment={employment}
+          setEmployment={setEmployment}
+        />
+      ) : null}
+
       <label>Job Title</label>
       <input
         type="text"
-        value={history.jobTitle}
-        onChange={(e) => setHistory({ ...history, jobTitle: e.target.value })}
+        name="jobTitle"
+        value={draftEmployment.jobTitle}
+        onChange={handleInputChange}
       />
 
       <label>Employer</label>
       <input
         type="text"
-        value={history.employer}
-        onChange={(e) => setHistory({ ...history, employer: e.target.value })}
+        name="employer"
+        value={draftEmployment.employer}
+        onChange={handleInputChange}
       />
 
       <label>Start & End Date</label>
       <input
         type="text"
+        name="dateRange"
         placeholder="MM/YY - MM/YY"
-        value={history.dateRange}
-        onChange={(e) => setHistory({ ...history, dateRange: e.target.value })}
+        value={draftEmployment.dateRange}
+        onChange={handleInputChange}
       />
 
       <label>City</label>
       <input
         type="text"
-        value={history.city}
-        onChange={(e) => setHistory({ ...history, city: e.target.value })}
+        name="city"
+        value={draftEmployment.city}
+        onChange={handleInputChange}
       />
 
       <label>Description</label>
       <input
         type="text"
-        value={history.description}
-        onChange={(e) =>
-          setHistory({ ...history, description: e.target.value })
-        }
+        name="description"
+        value={draftEmployment.description}
+        onChange={handleInputChange}
       />
+      <button onClick={handleSubmit}>Save Employment</button>
     </>
   );
 }
