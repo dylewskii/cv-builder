@@ -1,4 +1,4 @@
-import EmploymentEntries from "./EmploymentEntries";
+import EmploymentEntry from "./EmploymentEntry";
 
 export default function EmploymentHistory({
   draftEmployment,
@@ -8,18 +8,23 @@ export default function EmploymentHistory({
   handleInputChange,
   handleSubmit,
 }) {
-  const employmentFilled = employment !== null || employment.length !== 0;
+  const employmentAdded = employment !== null || employment.length !== 0;
   return (
     <>
       <h3>Employment History</h3>
       <p>Show your relevant experience.</p>
 
-      {employmentFilled ? (
-        <EmploymentEntries
-          employment={employment}
-          setEmployment={setEmployment}
-        />
-      ) : null}
+      {employmentAdded
+        ? employment.map((emp, i) => (
+            <EmploymentEntry
+              key={emp.id}
+              employment={employment}
+              setEmployment={setEmployment}
+              currentEmployment={emp}
+              currentEmploymentIndex={i}
+            />
+          ))
+        : null}
 
       <label>Job Title</label>
       <input

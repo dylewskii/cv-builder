@@ -1,11 +1,16 @@
 import eeCSS from "../styles/EmploymentEntries.module.css";
 import { FaTrash, FaEdit, FaAngleDown } from "react-icons/fa";
 
-export default function EmploymentEntries({ employment, setEmployment }) {
+export default function EmploymentEntry({
+  employment,
+  setEmployment,
+  currentEmployment,
+  currentEmploymentIndex,
+}) {
   if (employment === null || employment.length === 0) return;
 
-  function handleEmploymentDelete(empId) {
-    const index = employment.findIndex((emp) => emp.id === empId);
+  function handleEmploymentDelete() {
+    const index = currentEmploymentIndex;
     if (index !== -1) {
       const updatedEmployment = [...employment];
       updatedEmployment.splice(index, 1);
@@ -13,13 +18,17 @@ export default function EmploymentEntries({ employment, setEmployment }) {
     }
   }
 
-  const allEntries = employment.map((emp) => (
-    <div key={emp.id} className={eeCSS.employmentEntry}>
-      <h4>{emp.jobTitle ? emp.jobTitle : "Job Title goes here"}</h4>
+  return (
+    <div className={eeCSS.employmentEntry}>
+      <h4>
+        {currentEmployment.jobTitle
+          ? currentEmployment.jobTitle
+          : "Job Title goes here"}
+      </h4>
       <div>
         <FaTrash
           className={eeCSS.icon}
-          onClick={() => handleEmploymentDelete(emp.id)}
+          onClick={() => handleEmploymentDelete()}
         />
         <FaEdit className={eeCSS.icon} onClick={() => console.log("editing")} />
         <FaAngleDown
@@ -28,7 +37,5 @@ export default function EmploymentEntries({ employment, setEmployment }) {
         />
       </div>
     </div>
-  ));
-
-  return <>{allEntries}</>;
+  );
 }
