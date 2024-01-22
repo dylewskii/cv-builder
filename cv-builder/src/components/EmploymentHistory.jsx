@@ -3,14 +3,24 @@ import EmploymentEntry from "./EmploymentEntry";
 
 export default function EmploymentHistory({
   draftEmployment,
-  setDraftEmployment,
   employment,
   setEmployment,
   handleInputChange,
   handleSubmit,
 }) {
-  const [expanded, setExpanded] = useState(false);
+  const [expandedEntries, setExpandedEntries] = useState([]);
   const employmentAdded = employment !== null || employment.length !== 0;
+  function handleExpandToggle(index) {
+    setExpandedEntries((prev) => {
+      // Check if entry already expanded
+      const isExpanded = prev.includes(index);
+      // If expanded, filter it out, otherwise add it to the state
+      return isExpanded
+        ? prev.filter((item) => item !== index)
+        : [...prev, index];
+    });
+  }
+
   return (
     <>
       <h3>Employment History</h3>
@@ -24,9 +34,9 @@ export default function EmploymentHistory({
               setEmployment={setEmployment}
               currentEmployment={emp}
               currentEmploymentIndex={i}
-              expanded={expanded}
-              setExpanded={setExpanded}
-              className={expanded && "expanded"}
+              expandedEntries={expandedEntries}
+              handleExpandToggle={() => handleExpandToggle(i)}
+              className={expandedEntries.includes(i) && "expanded"}
             />
           ))
         : null}

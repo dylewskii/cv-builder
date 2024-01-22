@@ -6,8 +6,8 @@ export default function EmploymentEntry({
   setEmployment,
   currentEmployment,
   currentEmploymentIndex,
-  expanded,
-  setExpanded,
+  expandedEntries,
+  handleExpandToggle,
 }) {
   if (employment === null || employment.length === 0) return;
 
@@ -17,19 +17,11 @@ export default function EmploymentEntry({
     setEmployment(updatedEmployment);
   }
 
-  function handleEmploymentExpand() {
-    setExpanded(!expanded);
-  }
+  const isExpanded = expandedEntries.includes(currentEmploymentIndex);
 
-  if (expanded) {
+  if (isExpanded) {
     return (
-      <div
-        className={
-          expanded
-            ? `${eeCSS.employmentEntry} ${eeCSS.expanded}`
-            : eeCSS.employmentEntry
-        }
-      >
+      <div className={`${eeCSS.employmentEntry} ${eeCSS.expanded}`}>
         <h4>
           {currentEmployment.jobTitle && currentEmployment.jobTitle}
           {currentEmployment.employer && " - " + currentEmployment.employer}
@@ -87,13 +79,13 @@ export default function EmploymentEntry({
           </div>
         </div>
         <EmploymentEntryControls
-          expanded={expanded}
+          isExpanded={isExpanded}
           handleEmploymentDelete={handleEmploymentDelete}
-          handleEmploymentExpand={handleEmploymentExpand}
+          handleExpandToggle={handleExpandToggle}
         />
       </div>
     );
-  } else if (!expanded) {
+  } else {
     return (
       <div className={eeCSS.employmentEntry}>
         <h4>
@@ -101,9 +93,9 @@ export default function EmploymentEntry({
           {currentEmployment.employer && " - " + currentEmployment.employer}
         </h4>
         <EmploymentEntryControls
-          expanded={expanded}
+          isExpanded={isExpanded}
           handleEmploymentDelete={handleEmploymentDelete}
-          handleEmploymentExpand={handleEmploymentExpand}
+          handleExpandToggle={handleExpandToggle}
         />
       </div>
     );
@@ -111,9 +103,9 @@ export default function EmploymentEntry({
 }
 
 function EmploymentEntryControls({
-  expanded,
+  isExpanded,
   handleEmploymentDelete,
-  handleEmploymentExpand,
+  handleExpandToggle,
 }) {
   return (
     <div className={eeCSS.employmentEntryControls}>
@@ -122,15 +114,15 @@ function EmploymentEntryControls({
         onClick={() => handleEmploymentDelete()}
       />
       <FaEdit className={eeCSS.icon} onClick={() => console.log("editing")} />
-      {expanded ? (
+      {isExpanded ? (
         <FaAngleUp
           className={eeCSS.icon}
-          onClick={() => handleEmploymentExpand()}
+          onClick={() => handleExpandToggle()}
         />
       ) : (
         <FaAngleDown
           className={eeCSS.icon}
-          onClick={() => handleEmploymentExpand()}
+          onClick={() => handleExpandToggle()}
         />
       )}
     </div>
