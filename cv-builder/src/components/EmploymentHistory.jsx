@@ -1,3 +1,4 @@
+import { useState } from "react";
 import EmploymentEntry from "./EmploymentEntry";
 
 export default function EmploymentHistory({
@@ -8,6 +9,7 @@ export default function EmploymentHistory({
   handleInputChange,
   handleSubmit,
 }) {
+  const [expanded, setExpanded] = useState(false);
   const employmentAdded = employment !== null || employment.length !== 0;
   return (
     <>
@@ -22,6 +24,9 @@ export default function EmploymentHistory({
               setEmployment={setEmployment}
               currentEmployment={emp}
               currentEmploymentIndex={i}
+              expanded={expanded}
+              setExpanded={setExpanded}
+              className={expanded && "expanded"}
             />
           ))
         : null}
