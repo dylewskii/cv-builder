@@ -3,8 +3,7 @@
   display: relative;
   width: 100%;
   min-width: 200px;
-  height: 450px;
-  min-height: 350px;
+  min-height: 600px;
   border-radius: 5px;
   border: 1px solid var(--light-white);
   padding: 1rem;
@@ -69,7 +68,6 @@
 }
 
 /* EMPLOYMENT */
-
 .employmentBox {
   margin: 0rem 0 1.5rem 0;
 }
@@ -97,3 +95,7 @@
 .employmentBody {
   padding: 0rem 2rem;
 }
+
+/* EDUCATION */
+
+/* REFERENCES */
