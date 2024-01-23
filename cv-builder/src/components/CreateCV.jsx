@@ -77,35 +77,35 @@ export default function CreateCV() {
   };
   return (
     <div className={createCSS.createContainer}>
-      <section className={createCSS.previewPanel}>
-        <div className={createCSS.previewDetails}>
+      <section className={previewCSS.previewPanel}>
+        <div className={previewCSS.previewDetails}>
           <h4>
             {details.fName} {details.lName}
           </h4>
-          <div className={createCSS.detailsLocation}>
-            <p className={createCSS.detailsCity}>{details.city}</p>
-            <p className={createCSS.detailsCountry}>{details.country}</p>
+          <div className={previewCSS.detailsLocation}>
+            <p className={previewCSS.detailsCity}>{details.city}</p>
+            <p className={previewCSS.detailsCountry}>{details.country}</p>
           </div>
-          <div className={createCSS.detailsContact}>
-            <p className={createCSS.detailsEmail}>{details.email}</p>
-            <p className={createCSS.detailsTel}>{details.tel}</p>
+          <div className={previewCSS.detailsContact}>
+            <p className={previewCSS.detailsEmail}>{details.email}</p>
+            <p className={previewCSS.detailsTel}>{details.tel}</p>
           </div>
         </div>
-        <div className={createCSS.previewSummary}>
+        <div className={previewCSS.previewSummary}>
           <h4>Profile</h4>
           <p>{summary}</p>
         </div>
-        <div className={createCSS.previewHistory}>
+        <div className={previewCSS.previewHistory}>
           <h4>Employment History</h4>
-          <div className={createCSS.employerBox}>
+          <div className={previewCSS.employerBox}>
             {employment.map((emp, i) => {
               return <EmploymentPreview key={crypto.randomUUID()} emp={emp} />;
             })}
           </div>
         </div>
-        <div className={createCSS.previewEducation}>
+        <div className={previewCSS.previewEducation}>
           <h4>Education</h4>
-          <div className={createCSS.educationBox}>
+          <div className={previewCSS.educationBox}>
             <h5>
               {education.school} {education.degree} {education.dateRange}
             </h5>
@@ -113,12 +113,12 @@ export default function CreateCV() {
             <p>{education.description}</p>
           </div>
         </div>
-        <div className={createCSS.previewReferences}>
+        <div className={previewCSS.previewReferences}>
           <h4>References</h4>
           {!references.hide ? (
             <p>References available upon request</p>
           ) : (
-            <div className={createCSS.referenceBox}>
+            <div className={previewCSS.referenceBox}>
               <h5>
                 {references.referent} {references.company}
               </h5>
