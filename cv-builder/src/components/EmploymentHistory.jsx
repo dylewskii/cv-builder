@@ -9,6 +9,8 @@ export default function EmploymentHistory({
   handleSubmit,
 }) {
   const [expandedEntries, setExpandedEntries] = useState([]);
+  const [editingEntries, setEditingEntries] = useState([]);
+
   const employmentAdded = employment !== null || employment.length !== 0;
   function handleExpandToggle(index) {
     setExpandedEntries((prev) => {
@@ -16,6 +18,15 @@ export default function EmploymentHistory({
       const isExpanded = prev.includes(index);
       // If expanded, filter it out, otherwise add it to the state
       return isExpanded
+        ? prev.filter((item) => item !== index)
+        : [...prev, index];
+    });
+  }
+
+  function handleEmploymentEdit(index) {
+    setEditingEntries((prev) => {
+      const isBeingEdited = prev.includes(index);
+      return isBeingEdited
         ? prev.filter((item) => item !== index)
         : [...prev, index];
     });
@@ -36,6 +47,8 @@ export default function EmploymentHistory({
               currentEmploymentIndex={i}
               expandedEntries={expandedEntries}
               handleExpandToggle={() => handleExpandToggle(i)}
+              editingEntries={editingEntries}
+              handleEmploymentEdit={() => handleEmploymentEdit(i)}
               className={expandedEntries.includes(i) && "expanded"}
             />
           ))

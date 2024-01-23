@@ -1,5 +1,11 @@
 import eeCSS from "../styles/EmploymentEntries.module.css";
-import { FaTrash, FaEdit, FaAngleDown, FaAngleUp } from "react-icons/fa";
+import {
+  FaTrash,
+  FaEdit,
+  FaAngleDown,
+  FaAngleUp,
+  FaRegSave,
+} from "react-icons/fa";
 
 export default function EmploymentEntry({
   employment,
@@ -8,6 +14,8 @@ export default function EmploymentEntry({
   currentEmploymentIndex,
   expandedEntries,
   handleExpandToggle,
+  editingEntries,
+  handleEmploymentEdit,
 }) {
   if (employment === null || employment.length === 0) return;
 
@@ -18,6 +26,7 @@ export default function EmploymentEntry({
   }
 
   const isExpanded = expandedEntries.includes(currentEmploymentIndex);
+  const isBeingEdited = editingEntries.includes(currentEmploymentIndex);
 
   if (isExpanded) {
     return (
@@ -30,17 +39,18 @@ export default function EmploymentEntry({
           <div>
             <label>Job Title</label>
             <input
-              disabled
+              disabled={!isBeingEdited}
               type="text"
               name="jobTitle"
               value={currentEmployment.jobTitle}
+              // onChange={(e) => handleInp}
             />
           </div>
 
           <div>
             <label>Employer</label>
             <input
-              disabled
+              disabled={!isBeingEdited}
               type="text"
               name="employer"
               value={currentEmployment.employer}
@@ -50,7 +60,7 @@ export default function EmploymentEntry({
           <div>
             <label>Start & End Date</label>
             <input
-              disabled
+              disabled={!isBeingEdited}
               type="text"
               name="dateRange"
               placeholder="MM/YY - MM/YY"
@@ -61,7 +71,7 @@ export default function EmploymentEntry({
           <div>
             <label>City</label>
             <input
-              disabled
+              disabled={!isBeingEdited}
               type="text"
               name="city"
               value={currentEmployment.city}
@@ -71,7 +81,7 @@ export default function EmploymentEntry({
           <div>
             <label>Description</label>
             <input
-              disabled
+              disabled={!isBeingEdited}
               type="text"
               name="description"
               value={currentEmployment.description}
@@ -80,8 +90,10 @@ export default function EmploymentEntry({
         </div>
         <EmploymentEntryControls
           isExpanded={isExpanded}
+          isBeingEdited={isBeingEdited}
           handleEmploymentDelete={handleEmploymentDelete}
           handleExpandToggle={handleExpandToggle}
+          handleEmploymentEdit={handleEmploymentEdit}
         />
       </div>
     );
@@ -94,8 +106,10 @@ export default function EmploymentEntry({
         </h4>
         <EmploymentEntryControls
           isExpanded={isExpanded}
+          isBeingEdited={isBeingEdited}
           handleEmploymentDelete={handleEmploymentDelete}
           handleExpandToggle={handleExpandToggle}
+          handleEmploymentEdit={handleEmploymentEdit}
         />
       </div>
     );
@@ -104,8 +118,10 @@ export default function EmploymentEntry({
 
 function EmploymentEntryControls({
   isExpanded,
+  isBeingEdited,
   handleEmploymentDelete,
   handleExpandToggle,
+  handleEmploymentEdit,
 }) {
   return (
     <div className={eeCSS.employmentEntryControls}>
@@ -113,7 +129,14 @@ function EmploymentEntryControls({
         className={eeCSS.icon}
         onClick={() => handleEmploymentDelete()}
       />
-      <FaEdit className={eeCSS.icon} onClick={() => console.log("editing")} />
+      {isBeingEdited ? (
+        <FaRegSave
+          className={eeCSS.icon}
+          onClick={() => handleEmploymentEdit()}
+        />
+      ) : (
+        <FaEdit className={eeCSS.icon} onClick={() => handleEmploymentEdit()} />
+      )}
       {isExpanded ? (
         <FaAngleUp
           className={eeCSS.icon}
