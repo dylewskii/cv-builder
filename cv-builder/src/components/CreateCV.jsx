@@ -1,5 +1,6 @@
 import { useState } from "react";
 import createCSS from "../styles/CreateCV.module.css";
+import previewCSS from "../styles/Preview.module.css";
 import PersonalDetails from "./PersonalDetails";
 import ProfessionalSummary from "./ProfessionalSummary";
 import EmploymentHistory from "./EmploymentHistory";
@@ -153,19 +154,19 @@ export default function CreateCV() {
 
 function EmploymentPreview({ emp }) {
   return (
-    <>
-      <div>
+    <div className={previewCSS.employmentBox}>
+      <div className={previewCSS.employmentHeader}>
         <FaBullseye />
-        <h4>
+        <h5>
           {emp.jobTitle} <span>{" - " + emp.employer}</span>
-        </h4>
+        </h5>
         <p>
           {emp.city} <span>{" - " + emp.dateRange}</span>
         </p>
       </div>
-      <div>
+      <div className={previewCSS.employmentBody}>
         <p>{emp.description}</p>
       </div>
-    </>
+    </div>
   );
 }
