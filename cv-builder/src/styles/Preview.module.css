@@ -1,0 +1,27 @@
+.employmentBox {
+  margin: 0rem 0 1.5rem 0;
+}
+
+.employmentHeader,
+.employmentTitle {
+  display: flex;
+  align-items: center;
+}
+
+.employmentHeader {
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.employmentHeader p {
+  font-size: 0.8rem;
+}
+
+.icon {
+  width: 0.6rem;
+  margin-right: 3px;
+}
+
+.employmentBody {
+  padding: 0rem 2rem;
+}
