@@ -5,6 +5,7 @@ import ProfessionalSummary from "./ProfessionalSummary";
 import EmploymentHistory from "./EmploymentHistory";
 import Education from "./Education";
 import References from "./References";
+import { FaBullseye } from "react-icons/fa";
 
 export default function CreateCV() {
   // Personal Details State
@@ -96,14 +97,9 @@ export default function CreateCV() {
         <div className={createCSS.previewHistory}>
           <h4>Employment History</h4>
           <div className={createCSS.employerBox}>
-            {/* <h5>{employment.jobTitle}</h5>
-            <p>{employment.employer}</p>
-            <p>{employment.dateRange}</p>
-            <ul>
-              <li>Task 1</li>
-              <li>Task 2</li>
-              <li>Task 3</li>
-            </ul> */}
+            {employment.map((emp, i) => {
+              return <EmploymentPreview emp={emp} />;
+            })}
           </div>
         </div>
         <div className={createCSS.previewEducation}>
@@ -152,5 +148,24 @@ export default function CreateCV() {
         </form>
       </section>
     </div>
+  );
+}
+
+function EmploymentPreview({ emp }) {
+  return (
+    <>
+      <div>
+        <FaBullseye />
+        <h4>
+          {emp.jobTitle} <span>{" - " + emp.employer}</span>
+        </h4>
+        <p>
+          {emp.city} <span>{" - " + emp.dateRange}</span>
+        </p>
+      </div>
+      <div>
+        <p>{emp.description}</p>
+      </div>
+    </>
   );
 }
