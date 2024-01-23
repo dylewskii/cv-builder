@@ -99,7 +99,7 @@ export default function CreateCV() {
           <h4>Employment History</h4>
           <div className={createCSS.employerBox}>
             {employment.map((emp, i) => {
-              return <EmploymentPreview emp={emp} />;
+              return <EmploymentPreview key={crypto.randomUUID()} emp={emp} />;
             })}
           </div>
         </div>
