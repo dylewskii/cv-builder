@@ -27,28 +27,29 @@ export default function EmploymentEntry({
     description: "",
   });
 
-  if (employment === null || employment.length === 0) return;
+  if (employment === null || employment.length === 0) return null;
 
+  // Deletes an employment entry from the employment state
   function handleEmploymentDelete() {
     const updatedEmployment = [...employment];
     updatedEmployment.splice(currentEmploymentIndex, 1);
     setEmployment(updatedEmployment);
   }
 
-  function handleEmploymentEdit(e) {
-    const { name, value } = e.target;
+  // Adds any changes made to editDraft state
+  function handleEmploymentEdit(e, field) {
+    const { value } = e.target;
     setEditDraft((prevDraft) => ({
       ...prevDraft,
-      [name]: value,
+      [field]: value,
     }));
   }
 
-  function handleEmploymentSaveChanges(e) {
-    e.preventDefault();
-
+  // Saves any changes (stored in editDraft) to the employment state
+  function handleSaveChanges(index) {
     setEmployment((prevEmployment) =>
       prevEmployment.map((emp, i) =>
-        i === currentEmploymentIndex
+        i === index
           ? {
               id: crypto.randomUUID(),
               jobTitle: editDraft.jobTitle,
@@ -74,120 +75,69 @@ export default function EmploymentEntry({
   const isExpanded = expandedEntries.includes(currentEmploymentIndex);
   const isBeingEdited = editingEntries.includes(currentEmploymentIndex);
 
-  if (isExpanded) {
-    return (
-      <div className={`${eeCSS.employmentEntry} ${eeCSS.expanded}`}>
-        <h4>
-          {currentEmployment.jobTitle && currentEmployment.jobTitle}
-          {currentEmployment.employer && " - " + currentEmployment.employer}
-        </h4>
-        <div className={eeCSS.formExpanded}>
-          <div>
-            <label>Job Title</label>
-            <input
-              disabled={!isBeingEdited}
-              type="text"
-              name="jobTitle"
-              placeholder={currentEmployment.jobTitle}
-              value={editDraft.jobTitle}
-              onChange={handleEmploymentEdit}
-              // defaultValue={currentEmployment.jobTitle}
-            />
-          </div>
-
-          <div>
-            <label>Employer</label>
-            <input
-              disabled={!isBeingEdited}
-              type="text"
-              name="employer"
-              placeholder={currentEmployment.employer}
-              value={editDraft.employer}
-              onChange={handleEmploymentEdit}
-              // defaultValue={currentEmployment.employer}
-            />
-          </div>
-
-          <div>
-            <label>Start & End Date</label>
-            <input
-              disabled={!isBeingEdited}
-              type="text"
-              name="dateRange"
-              placeholder={
-                currentEmployment.placeholder
-                  ? currentEmployment.placeholder
-                  : "MM/YY - MM/YY"
-              }
-              value={editDraft.placeholder}
-              onChange={handleEmploymentEdit}
-              // defaultValue={currentEmployment.placeholder}
-            />
-          </div>
-
-          <div>
-            <label>City</label>
-            <input
-              disabled={!isBeingEdited}
-              type="text"
-              name="city"
-              placeholder={currentEmployment.city}
-              value={editDraft.city}
-              onChange={handleEmploymentEdit}
-              // defaultValue={currentEmployment.city}
-            />
-          </div>
-
-          <div>
-            <label>Description</label>
-            <input
-              disabled={!isBeingEdited}
-              type="text"
-              name="description"
-              placeholder={currentEmployment.description}
-              value={editDraft.description}
-              onChange={handleEmploymentEdit}
-              // defaultValue={currentEmployment.description}
-            />
-          </div>
-        </div>
-        <EmploymentEntryControls
-          isExpanded={isExpanded}
+  return (
+    <div className={`${eeCSS.employmentEntry} ${isExpanded && eeCSS.expanded}`}>
+      <h4>
+        {currentEmployment.jobTitle && currentEmployment.jobTitle}
+        {currentEmployment.employer && " - " + currentEmployment.employer}
+      </h4>
+      {isExpanded && (
+        <EmploymentForm
+          editDraft={editDraft}
           isBeingEdited={isBeingEdited}
-          handleEmploymentDelete={handleEmploymentDelete}
-          handleExpandToggle={handleExpandToggle}
-          handleEditClick={handleEditClick}
-          handleEmploymentSaveChanges={handleEmploymentSaveChanges}
+          currentEmployment={currentEmployment}
+          setEditDraft={setEditDraft}
+          handleEmploymentEdit={handleEmploymentEdit}
         />
-      </div>
-    );
-  } else {
-    return (
-      <div className={eeCSS.employmentEntry}>
-        <h4>
-          {currentEmployment.jobTitle && currentEmployment.jobTitle}
-          {currentEmployment.employer && " - " + currentEmployment.employer}
-        </h4>
-        <EmploymentEntryControls
-          isExpanded={isExpanded}
-          isBeingEdited={isBeingEdited}
-          handleEmploymentDelete={handleEmploymentDelete}
-          handleExpandToggle={handleExpandToggle}
-          handleEditClick={handleEditClick}
-          handleEmploymentSaveChanges={handleEmploymentSaveChanges}
-        />
-      </div>
-    );
-  }
+      )}
+      <EmploymentEntryControls
+        isExpanded={isExpanded}
+        isBeingEdited={isBeingEdited}
+        handleEmploymentDelete={handleEmploymentDelete}
+        handleExpandToggle={handleExpandToggle}
+        handleEditClick={handleEditClick}
+        handleSaveChanges={() => handleSaveChanges(currentEmploymentIndex)}
+      />
+    </div>
+  );
 }
 
+// Returns a form which allow edits to be made to an existing employment entry
+function EmploymentForm({
+  editDraft,
+  isBeingEdited,
+  currentEmployment,
+  handleEmploymentEdit,
+}) {
+  return (
+    <div className={eeCSS.formExpanded}>
+      {["jobTitle", "employer", "dateRange", "city", "description"].map(
+        (field) => (
+          <div key={field}>
+            <label>{capitalizeFirstLetter(field)}</label>
+            <input
+              disabled={!isBeingEdited}
+              type="text"
+              name={field}
+              placeholder={currentEmployment[field]}
+              value={editDraft[field]}
+              onChange={(e) => handleEmploymentEdit(e, field)}
+            />
+          </div>
+        )
+      )}
+    </div>
+  );
+}
+
+// Returns the employment entry controls (delete, edit, save, collapse)
 function EmploymentEntryControls({
   isExpanded,
   isBeingEdited,
   handleEmploymentDelete,
   handleExpandToggle,
   handleEditClick,
-  handleEmploymentSaveChanges,
+  handleSaveChanges,
 }) {
   return (
     <div className={eeCSS.employmentEntryControls}>
@@ -198,7 +148,10 @@ function EmploymentEntryControls({
       {isBeingEdited ? (
         <FaRegSave
           className={eeCSS.icon}
-          onClick={(e) => handleEmploymentSaveChanges(e)}
+          onClick={() => {
+            handleSaveChanges();
+            handleEditClick();
+          }}
         />
       ) : (
         <FaEdit className={eeCSS.icon} onClick={() => handleEditClick()} />
@@ -216,4 +169,8 @@ function EmploymentEntryControls({
       )}
     </div>
   );
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
