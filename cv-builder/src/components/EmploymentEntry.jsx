@@ -1,3 +1,4 @@
+import { useState } from "react";
 import eeCSS from "../styles/EmploymentEntries.module.css";
 import {
   FaTrash,
@@ -17,12 +18,57 @@ export default function EmploymentEntry({
   editingEntries,
   handleEditClick,
 }) {
+  const [editDraft, setEditDraft] = useState({
+    id: crypto.randomUUID(),
+    jobTitle: "",
+    employer: "",
+    dateRange: "",
+    city: "",
+    description: "",
+  });
+
   if (employment === null || employment.length === 0) return;
 
   function handleEmploymentDelete() {
     const updatedEmployment = [...employment];
     updatedEmployment.splice(currentEmploymentIndex, 1);
     setEmployment(updatedEmployment);
+  }
+
+  function handleEmploymentEdit(e) {
+    const { name, value } = e.target;
+    setEditDraft((prevDraft) => ({
+      ...prevDraft,
+      [name]: value,
+    }));
+  }
+
+  function handleEmploymentSaveChanges(e) {
+    e.preventDefault();
+
+    setEmployment((prevEmployment) =>
+      prevEmployment.map((emp, i) =>
+        i === currentEmploymentIndex
+          ? {
+              id: crypto.randomUUID(),
+              jobTitle: editDraft.jobTitle,
+              employer: editDraft.employer,
+              dateRange: editDraft.dateRange,
+              city: editDraft.city,
+              description: editDraft.description,
+            }
+          : emp
+      )
+    );
+
+    setEditDraft({
+      id: crypto.randomUUID(),
+      jobTitle: "",
+      employer: "",
+      dateRange: "",
+      city: "",
+      description: "",
+    });
   }
 
   const isExpanded = expandedEntries.includes(currentEmploymentIndex);
@@ -42,8 +88,10 @@ export default function EmploymentEntry({
               disabled={!isBeingEdited}
               type="text"
               name="jobTitle"
-              value={currentEmployment.jobTitle}
-              // onChange={(e) => handleInp}
+              placeholder={currentEmployment.jobTitle}
+              value={editDraft.jobTitle}
+              onChange={handleEmploymentEdit}
+              // defaultValue={currentEmployment.jobTitle}
             />
           </div>
 
@@ -53,7 +101,10 @@ export default function EmploymentEntry({
               disabled={!isBeingEdited}
               type="text"
               name="employer"
-              value={currentEmployment.employer}
+              placeholder={currentEmployment.employer}
+              value={editDraft.employer}
+              onChange={handleEmploymentEdit}
+              // defaultValue={currentEmployment.employer}
             />
           </div>
 
@@ -63,8 +114,14 @@ export default function EmploymentEntry({
               disabled={!isBeingEdited}
               type="text"
               name="dateRange"
-              placeholder="MM/YY - MM/YY"
-              value={currentEmployment.dateRange}
+              placeholder={
+                currentEmployment.placeholder
+                  ? currentEmployment.placeholder
+                  : "MM/YY - MM/YY"
+              }
+              value={editDraft.placeholder}
+              onChange={handleEmploymentEdit}
+              // defaultValue={currentEmployment.placeholder}
             />
           </div>
 
@@ -74,7 +131,10 @@ export default function EmploymentEntry({
               disabled={!isBeingEdited}
               type="text"
               name="city"
-              value={currentEmployment.city}
+              placeholder={currentEmployment.city}
+              value={editDraft.city}
+              onChange={handleEmploymentEdit}
+              // defaultValue={currentEmployment.city}
             />
           </div>
 
@@ -84,7 +144,10 @@ export default function EmploymentEntry({
               disabled={!isBeingEdited}
               type="text"
               name="description"
-              value={currentEmployment.description}
+              placeholder={currentEmployment.description}
+              value={editDraft.description}
+              onChange={handleEmploymentEdit}
+              // defaultValue={currentEmployment.description}
             />
           </div>
         </div>
@@ -94,6 +157,7 @@ export default function EmploymentEntry({
           handleEmploymentDelete={handleEmploymentDelete}
           handleExpandToggle={handleExpandToggle}
           handleEditClick={handleEditClick}
+          handleEmploymentSaveChanges={handleEmploymentSaveChanges}
         />
       </div>
     );
@@ -110,6 +174,7 @@ export default function EmploymentEntry({
           handleEmploymentDelete={handleEmploymentDelete}
           handleExpandToggle={handleExpandToggle}
           handleEditClick={handleEditClick}
+          handleEmploymentSaveChanges={handleEmploymentSaveChanges}
         />
       </div>
     );
@@ -122,6 +187,7 @@ function EmploymentEntryControls({
   handleEmploymentDelete,
   handleExpandToggle,
   handleEditClick,
+  handleEmploymentSaveChanges,
 }) {
   return (
     <div className={eeCSS.employmentEntryControls}>
@@ -130,7 +196,10 @@ function EmploymentEntryControls({
         onClick={() => handleEmploymentDelete()}
       />
       {isBeingEdited ? (
-        <FaRegSave className={eeCSS.icon} onClick={() => handleEditClick()} />
+        <FaRegSave
+          className={eeCSS.icon}
+          onClick={(e) => handleEmploymentSaveChanges(e)}
+        />
       ) : (
         <FaEdit className={eeCSS.icon} onClick={() => handleEditClick()} />
       )}
