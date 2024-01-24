@@ -16,7 +16,7 @@ export default function EmploymentEntry({
   currentEmploymentIndex,
   expandedEntries,
   handleExpandToggle,
-  editingEntries,
+  entriesBeingEdited,
   handleEditClick,
 }) {
   const [editDraft, setEditDraft] = useState({
@@ -74,7 +74,7 @@ export default function EmploymentEntry({
   }
 
   const isExpanded = expandedEntries.includes(currentEmploymentIndex);
-  const isBeingEdited = editingEntries.includes(currentEmploymentIndex);
+  const isBeingEdited = entriesBeingEdited.includes(currentEmploymentIndex);
 
   return (
     <div className={`${eeCSS.employmentEntry} ${isExpanded && eeCSS.expanded}`}>
