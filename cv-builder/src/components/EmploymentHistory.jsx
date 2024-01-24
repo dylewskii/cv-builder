@@ -23,7 +23,7 @@ export default function EmploymentHistory({
     });
   }
 
-  function handleEmploymentEdit(index) {
+  function handleEditClick(index) {
     setEditingEntries((prev) => {
       const isBeingEdited = prev.includes(index);
       return isBeingEdited
@@ -48,7 +48,7 @@ export default function EmploymentHistory({
               expandedEntries={expandedEntries}
               handleExpandToggle={() => handleExpandToggle(i)}
               editingEntries={editingEntries}
-              handleEmploymentEdit={() => handleEmploymentEdit(i)}
+              handleEditClick={() => handleEditClick(i)}
               className={expandedEntries.includes(i) && "expanded"}
             />
           ))

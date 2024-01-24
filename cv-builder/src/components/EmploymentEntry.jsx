@@ -15,7 +15,7 @@ export default function EmploymentEntry({
   expandedEntries,
   handleExpandToggle,
   editingEntries,
-  handleEmploymentEdit,
+  handleEditClick,
 }) {
   if (employment === null || employment.length === 0) return;
 
@@ -93,7 +93,7 @@ export default function EmploymentEntry({
           isBeingEdited={isBeingEdited}
           handleEmploymentDelete={handleEmploymentDelete}
           handleExpandToggle={handleExpandToggle}
-          handleEmploymentEdit={handleEmploymentEdit}
+          handleEditClick={handleEditClick}
         />
       </div>
     );
@@ -109,7 +109,7 @@ export default function EmploymentEntry({
           isBeingEdited={isBeingEdited}
           handleEmploymentDelete={handleEmploymentDelete}
           handleExpandToggle={handleExpandToggle}
-          handleEmploymentEdit={handleEmploymentEdit}
+          handleEditClick={handleEditClick}
         />
       </div>
     );
@@ -121,7 +121,7 @@ function EmploymentEntryControls({
   isBeingEdited,
   handleEmploymentDelete,
   handleExpandToggle,
-  handleEmploymentEdit,
+  handleEditClick,
 }) {
   return (
     <div className={eeCSS.employmentEntryControls}>
@@ -130,12 +130,9 @@ function EmploymentEntryControls({
         onClick={() => handleEmploymentDelete()}
       />
       {isBeingEdited ? (
-        <FaRegSave
-          className={eeCSS.icon}
-          onClick={() => handleEmploymentEdit()}
-        />
+        <FaRegSave className={eeCSS.icon} onClick={() => handleEditClick()} />
       ) : (
-        <FaEdit className={eeCSS.icon} onClick={() => handleEmploymentEdit()} />
+        <FaEdit className={eeCSS.icon} onClick={() => handleEditClick()} />
       )}
       {isExpanded ? (
         <FaAngleUp
