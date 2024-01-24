@@ -1,5 +1,6 @@
 import { useState } from "react";
 import eeCSS from "../styles/EmploymentEntries.module.css";
+import capitalizeFirstLetter from "../utils/capitalizeFirstLetter";
 import {
   FaTrash,
   FaEdit,
@@ -169,8 +170,4 @@ function EmploymentEntryControls({
       )}
     </div>
   );
-}
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
