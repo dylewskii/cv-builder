@@ -21,6 +21,7 @@ export default function CreateCV() {
 
   // Professional Summary State
   const [summary, setSummary] = useState("");
+
   // Employment History State
   const [employment, setEmployment] = useState([]);
   const [draftEmployment, setDraftEmployment] = useState({
@@ -33,48 +34,77 @@ export default function CreateCV() {
   });
 
   // Education State
-  const [education, setEducation] = useState([
-    {
-      id: crypto.randomUUID(),
-      school: "",
-      degree: "",
-      dateRange: "",
-      city: "",
-      description: "",
-    },
-  ]);
-  // References State
-  const [references, setReferences] = useState([
-    {
-      id: crypto.randomUUID(),
-      hide: false,
-      referent: "",
-      company: "",
-      phone: "",
-      email: "",
-    },
-  ]);
+  const [education, setEducation] = useState([]);
+  const [draftEducation, setDraftEducation] = useState({
+    id: crypto.randomUUID(),
+    school: "",
+    degree: "",
+    dateRange: "",
+    city: "",
+    description: "",
+  });
 
-  const handleInputChange = (e) => {
+  // References State
+  const [references, setReferences] = useState([]);
+  const [draftReferences, setDraftReferences] = useState({
+    id: crypto.randomUUID(),
+    hide: false,
+    referent: "",
+    company: "",
+    phone: "",
+    email: "",
+  });
+
+  // Form Handler Functions
+  const handleInputChange = (e, draftSetter) => {
     const { name, value } = e.target;
-    setDraftEmployment((prevDraft) => ({
+    draftSetter((prevDraft) => ({
       ...prevDraft,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, dataSetter, draft, entryType) => {
     e.preventDefault();
-    setEmployment((prevEmployment) => [...prevEmployment, draftEmployment]);
-    setDraftEmployment({
-      id: crypto.randomUUID(),
-      jobTitle: "",
-      employer: "",
-      dateRange: "",
-      city: "",
-      description: "",
-    });
+
+    dataSetter((prevEmployment) => [...prevEmployment, draft]);
+
+    switch (entryType) {
+      case "employment":
+        setDraftEmployment({
+          id: crypto.randomUUID(),
+          school: "",
+          degree: "",
+          dateRange: "",
+          city: "",
+          description: "",
+        });
+        break;
+      case "education":
+        setDraftEducation({
+          id: crypto.randomUUID(),
+          school: "",
+          degree: "",
+          dateRange: "",
+          city: "",
+          description: "",
+        });
+        break;
+      case "references":
+        setDraftReferences({
+          id: crypto.randomUUID(),
+          hide: false,
+          referent: "",
+          company: "",
+          phone: "",
+          email: "",
+        });
+        break;
+      default:
+        console.log("Invalid Entry Type");
+    }
   };
+
   return (
     <div className={createCSS.createContainer}>
       <section className={previewCSS.previewPanel}>
@@ -139,13 +169,33 @@ export default function CreateCV() {
             setDraftEmployment={setDraftEmployment}
             employment={employment}
             setEmployment={setEmployment}
-            handleInputChange={handleInputChange}
-            handleSubmit={handleSubmit}
+            handleInputChange={(e) => handleInputChange(e, setDraftEmployment)}
+            handleSubmit={(e) =>
+              handleSubmit(e, setEmployment, draftEmployment, "employment")
+            }
           />
 
-          <Education education={education} setEducation={setEducation} />
+          <Education
+            draftEducation={draftEducation}
+            setDraftEducation={setDraftEducation}
+            education={education}
+            setEducation={setEducation}
+            handleInputChange={(e) => handleInputChange(e, setDraftEducation)}
+            handleSubmit={(e) =>
+              handleSubmit(e, setEducation, draftEducation, "education")
+            }
+          />
 
-          <References references={references} setReferences={setReferences} />
+          <References
+            draftReferences={draftReferences}
+            setDraftReferences={setDraftReferences}
+            references={references}
+            setReferences={setReferences}
+            handleInputChange={(e) => handleInputChange(e, setDraftReferences)}
+            handleSubmit={(e) =>
+              handleSubmit(e, setReferences, draftReferences, "references")
+            }
+          />
         </form>
       </section>
     </div>

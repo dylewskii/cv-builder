@@ -2,7 +2,7 @@ h3 + p {
   margin-bottom: 1rem;
 }
 
-.employmentEntry {
+.entry {
   display: flex;
   justify-content: space-between;
   background-color: var(--dark-black);
@@ -14,35 +14,35 @@ h3 + p {
   transition: min-height 400ms ease-in-out;
 }
 
-.employmentEntry div {
+.entry div {
   display: flex;
   gap: 1.5rem;
 }
 
-.employmentEntry div > svg {
+.entry div > svg {
   cursor: pointer;
 }
 
-.employmentEntry div > svg:hover {
+.entry div > svg:hover {
   color: var(--dark-active);
 }
 
-.employmentEntry + label {
+.entry + label {
   margin-top: 1rem;
 }
 
-.employmentEntry.expanded {
+.entry.expanded {
   min-height: 300px;
   display: grid;
   grid-template-columns: 75% 25%;
   grid-template-rows: 1fr auto;
 }
 
-.employmentEntry.expanded h4 {
+.entry.expanded h4 {
   display: none;
 }
 
-.employmentEntry.expanded .formExpanded {
+.entry.expanded .formExpanded {
   grid-column: span 2;
   grid-row: 2;
   display: flex;
@@ -50,18 +50,18 @@ h3 + p {
   gap: 0.1rem;
 }
 
-.employmentEntry.expanded .formExpanded input {
+.entry.expanded .formExpanded input {
   margin: 0;
 }
 
-.employmentEntry.expanded .formExpanded > div {
+.entry.expanded .formExpanded > div {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
   margin-bottom: 1rem;
 }
 
-.employmentEntry.expanded .employmentEntryControls {
+.entry.expanded .entryControls {
   place-content: flex-end;
   grid-column: 2;
 }

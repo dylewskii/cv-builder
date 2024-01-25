@@ -1,5 +1,6 @@
 import { useState } from "react";
-import EmploymentEntry from "./EmploymentEntry";
+import Entry from "./Entry";
+import entryCSS from "../styles/Entry.module.css";
 
 export default function EmploymentHistory({
   draftEmployment,
@@ -10,19 +11,28 @@ export default function EmploymentHistory({
 }) {
   const [expandedEntries, setExpandedEntries] = useState([]);
   const [entriesBeingEdited, setEntriesBeingEdited] = useState([]);
-
   const employmentAdded = employment !== null || employment.length !== 0;
+  const employmentFields = [
+    "jobTitle",
+    "employer",
+    "dateRange",
+    "city",
+    "description",
+  ];
+
+  // Checks if entry is expanded.
+  // If expanded, filter it out, otherwise add it to expandedEntries state.
   function handleExpandToggle(index) {
     setExpandedEntries((prev) => {
-      // Check if entry already expanded
       const isExpanded = prev.includes(index);
-      // If expanded, filter it out, otherwise add it to the state
       return isExpanded
         ? prev.filter((item) => item !== index)
         : [...prev, index];
     });
   }
 
+  // Checks if entry is being edited.
+  // If being edited, filter it out, otherwise add it to entriesBeingEdited state.
   function handleEditClick(index) {
     setEntriesBeingEdited((prev) => {
       const isBeingEdited = prev.includes(index);
@@ -39,17 +49,18 @@ export default function EmploymentHistory({
 
       {employmentAdded
         ? employment.map((emp, i) => (
-            <EmploymentEntry
+            <Entry
               key={emp.id}
-              employment={employment}
-              setEmployment={setEmployment}
-              currentEmployment={emp}
-              currentEmploymentIndex={i}
+              data={employment}
+              setData={setEmployment}
+              currentData={emp}
+              currentDataIndex={i}
               expandedEntries={expandedEntries}
               handleExpandToggle={() => handleExpandToggle(i)}
               entriesBeingEdited={entriesBeingEdited}
               handleEditClick={() => handleEditClick(i)}
-              className={expandedEntries.includes(i) && "expanded"}
+              fieldNames={employmentFields}
+              className={entryCSS.entry}
             />
           ))
         : null}
@@ -58,7 +69,7 @@ export default function EmploymentHistory({
       <input
         type="text"
         name="jobTitle"
-        value={draftEmployment.jobTitle}
+        value={draftEmployment.jobTitle || ""}
         onChange={handleInputChange}
       />
 
@@ -66,7 +77,7 @@ export default function EmploymentHistory({
       <input
         type="text"
         name="employer"
-        value={draftEmployment.employer}
+        value={draftEmployment.employer || ""}
         onChange={handleInputChange}
       />
 
@@ -75,7 +86,7 @@ export default function EmploymentHistory({
         type="text"
         name="dateRange"
         placeholder="MM/YY - MM/YY"
-        value={draftEmployment.dateRange}
+        value={draftEmployment.dateRange || ""}
         onChange={handleInputChange}
       />
 
@@ -83,7 +94,7 @@ export default function EmploymentHistory({
       <input
         type="text"
         name="city"
-        value={draftEmployment.city}
+        value={draftEmployment.city || ""}
         onChange={handleInputChange}
       />
 
@@ -91,10 +102,10 @@ export default function EmploymentHistory({
       <input
         type="text"
         name="description"
-        value={draftEmployment.description}
+        value={draftEmployment.description || ""}
         onChange={handleInputChange}
       />
-      <button onClick={handleSubmit}>Save Employment</button>
+      <button onClick={handleSubmit}>Add Employment</button>
     </>
   );
 }
