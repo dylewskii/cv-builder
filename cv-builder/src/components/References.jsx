@@ -1,6 +1,6 @@
 import Entry from "./Entry";
 import { useState } from "react";
-import entryCSS from "../styles/EmploymentEntries.module.css";
+import entryCSS from "../styles/Entry.module.css";
 
 export default function References({
   references,
