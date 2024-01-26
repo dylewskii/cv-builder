@@ -9,6 +9,7 @@ export default function References({
   handleInputChange,
   handleSubmit,
 }) {
+  const [hideReferences, setHideReferences] = useState(true);
   const [expandedEntries, setExpandedEntries] = useState([]);
   const [entriesBeingEdited, setEntriesBeingEdited] = useState([]);
   const referencesAdded = references !== null || references.length !== 0;
@@ -59,17 +60,20 @@ export default function References({
         : null}
 
       <div>
-        <label>Available upon request only</label>
+        <label>Available upon request</label>
         <input
-          type="radio"
+          type="checkbox"
           name="hide"
-          value={draftReferences.hide || ""}
-          onChange={handleInputChange}
+          defaultChecked={hideReferences}
+          checked={hideReferences}
+          value={hideReferences || false}
+          onChange={() => setHideReferences(!hideReferences)}
         />
       </div>
 
       <label>Referent&#39;s Full Name</label>
       <input
+        disabled={hideReferences}
         type="text"
         name="referent"
         value={draftReferences.referent || ""}
@@ -78,6 +82,7 @@ export default function References({
 
       <label>Company</label>
       <input
+        disabled={hideReferences}
         type="text"
         name="company"
         value={draftReferences.company || ""}
@@ -86,6 +91,7 @@ export default function References({
 
       <label>Phone</label>
       <input
+        disabled={hideReferences}
         type="tel"
         name="phone"
         value={draftReferences.phone || ""}
@@ -94,12 +100,15 @@ export default function References({
 
       <label>Email</label>
       <input
+        disabled={hideReferences}
         type="email"
         name="email"
         value={draftReferences.email || ""}
         onChange={handleInputChange}
       />
-      <button onClick={handleSubmit}>Add Reference</button>
+      <button disabled={hideReferences} onClick={handleSubmit}>
+        Add Reference
+      </button>
     </>
   );
 }

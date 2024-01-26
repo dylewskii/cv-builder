@@ -48,7 +48,6 @@ export default function CreateCV() {
   const [references, setReferences] = useState([]);
   const [draftReferences, setDraftReferences] = useState({
     id: crypto.randomUUID(),
-    hide: false,
     referent: "",
     company: "",
     phone: "",
