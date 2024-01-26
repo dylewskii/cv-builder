@@ -64,7 +64,6 @@ export default function References({
         <input
           type="checkbox"
           name="hide"
-          defaultChecked={hideReferences}
           checked={hideReferences}
           value={hideReferences || false}
           onChange={() => setHideReferences(!hideReferences)}
