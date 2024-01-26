@@ -228,6 +228,12 @@ function EducationPreview({ edu }) {
             {edu.degree} <span>{"  " + edu.school}</span>
           </h5>
         </div>
+        <p>
+          {edu.city} <span>{"(" + edu.dateRange + ")"}</span>
+        </p>
+      </div>
+      <div className={previewCSS.educationBody}>
+        <p>{edu.description}</p>
       </div>
     </div>
   );
