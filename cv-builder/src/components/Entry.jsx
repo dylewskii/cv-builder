@@ -9,7 +9,6 @@ import {
   FaRegSave,
 } from "react-icons/fa";
 
-// Entry Component
 export default function Entry({
   data,
   setData,
@@ -30,13 +29,15 @@ export default function Entry({
 
   if (data === null || data.length === 0) return null;
 
-  function handleItemDelete() {
+  // Deletes an Entry by splicing it from the data state.
+  function handleEntryDelete() {
     const updatedItems = [...data];
     updatedItems.splice(currentDataIndex, 1);
     setData(updatedItems);
   }
 
-  function handleItemEdit(e, field) {
+  // Saves an Entry edit by adding the entered value to the editDraft state.
+  function handleEntryEdit(e, field) {
     const { value } = e.target;
     setEditDraft((prevDraft) => ({
       ...prevDraft,
@@ -44,6 +45,7 @@ export default function Entry({
     }));
   }
 
+  // Saves any changes made (stored in editDraft) to an Entry and resets editDraft state.
   function handleSaveChanges(index) {
     setData((prevItems) =>
       prevItems.map((item, i) =>
@@ -53,6 +55,12 @@ export default function Entry({
     setEditDraft(
       fieldNames.reduce((acc, field) => ({ ...acc, [field]: "" }), {})
     );
+  }
+
+  // Initializes editDraft state with values from currentData & toggles edit mode.
+  function startEditing(index) {
+    setEditDraft(currentData);
+    handleEditClick(index);
   }
 
   const isExpanded = expandedEntries.includes(currentDataIndex);
@@ -69,27 +77,28 @@ export default function Entry({
           isBeingEdited={isBeingEdited}
           currentData={currentData}
           setEditDraft={setEditDraft}
-          handleItemEdit={handleItemEdit}
+          handleEntryEdit={handleEntryEdit}
           fieldNames={fieldNames}
         />
       )}
       <EntryControls
         isExpanded={isExpanded}
         isBeingEdited={isBeingEdited}
-        handleItemDelete={handleItemDelete}
+        handleEntryDelete={handleEntryDelete}
         handleExpandToggle={handleExpandToggle}
-        handleEditClick={handleEditClick}
+        handleEditClick={() => startEditing(currentDataIndex)}
         handleSaveChanges={() => handleSaveChanges(currentDataIndex)}
       />
     </div>
   );
 }
 
+// Returns a form which allow edits to be made to an existing Entry.
 function EntryForm({
   editDraft,
   isBeingEdited,
   currentData,
-  handleItemEdit,
+  handleEntryEdit,
   fieldNames,
 }) {
   return (
@@ -103,7 +112,7 @@ function EntryForm({
             name={field}
             placeholder={currentData[field] ? currentData[field] : ""}
             value={editDraft[field]}
-            onChange={(e) => handleItemEdit(e, field)}
+            onChange={(e) => handleEntryEdit(e, field)}
           />
         </div>
       ))}
@@ -111,18 +120,18 @@ function EntryForm({
   );
 }
 
-// Entry Controls Component
+// Returns the Entry controls (delete, edit, save, toggle expand/collapse)
 function EntryControls({
   isExpanded,
   isBeingEdited,
-  handleItemDelete,
+  handleEntryDelete,
   handleExpandToggle,
   handleEditClick,
   handleSaveChanges,
 }) {
   return (
     <div className={entryCSS.entryControls}>
-      <FaTrash className={entryCSS.icon} onClick={() => handleItemDelete()} />
+      <FaTrash className={entryCSS.icon} onClick={() => handleEntryDelete()} />
       {isBeingEdited ? (
         <FaRegSave
           className={entryCSS.icon}
