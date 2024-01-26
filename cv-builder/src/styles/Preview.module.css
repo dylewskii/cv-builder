@@ -11,7 +11,7 @@
 
 .previewDetails,
 .previewSummary,
-.previewHistory,
+.previewEmployment,
 .previewEducation,
 .previewReferences {
   display: flex;
@@ -20,7 +20,7 @@
 
 .previewDetails::after,
 .previewSummary::after,
-.previewHistory::after,
+.previewEmployment::after,
 .previewEducation::after,
 .previewReferences::after {
   content: "";
@@ -52,7 +52,7 @@
 }
 
 .previewSummary h4,
-.previewHistory h4,
+.previewEmployment h4,
 .previewEducation h4,
 .previewReferences h4 {
   margin: 1rem auto;

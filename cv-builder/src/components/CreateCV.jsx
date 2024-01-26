@@ -105,9 +105,11 @@ export default function CreateCV() {
     }
   };
 
+  // PREVIEW
   return (
     <div className={createCSS.createContainer}>
       <section className={previewCSS.previewPanel}>
+        {/* Preview - Personal Details */}
         <div className={previewCSS.previewDetails}>
           <h4>
             {details.fName} {details.lName}
@@ -121,40 +123,40 @@ export default function CreateCV() {
             <p className={previewCSS.detailsTel}>{details.tel}</p>
           </div>
         </div>
+
+        {/* Preview - Professional Summary */}
         <div className={previewCSS.previewSummary}>
           <h4>Profile</h4>
           <p>{summary}</p>
         </div>
-        <div className={previewCSS.previewHistory}>
+
+        {/* Preview - Employment History */}
+        <div className={previewCSS.previewEmployment}>
           <h4>Employment History</h4>
-          <div className={previewCSS.employerBox}>
-            {employment.map((emp, i) => {
+          <div className={previewCSS.employmentBox}>
+            {employment.map((emp) => {
               return <EmploymentPreview key={crypto.randomUUID()} emp={emp} />;
             })}
           </div>
         </div>
+
+        {/* Preview - Education */}
         <div className={previewCSS.previewEducation}>
           <h4>Education</h4>
-          {education.map((edu, i) => {
+          {education.map((edu) => {
             return <EducationPreview key={crypto.randomUUID()} edu={edu} />;
           })}
         </div>
+
+        {/* Preview - References */}
         <div className={previewCSS.previewReferences}>
           <h4>References</h4>
           {hideReferences ? (
             <p className={previewCSS.hideReferences}>Available upon request</p>
           ) : (
-            <div className={previewCSS.referencesBox}>
-              <div className={previewCSS.referencesHeader}>
-                <h5>
-                  {references.referent} {references.company}
-                </h5>
-              </div>
-              <div className={previewCSS.referencesBody}>
-                <p>{references.email}</p>
-                <p>{references.phone}</p>
-              </div>
-            </div>
+            references.map((refe) => {
+              return <ReferencesPreview key={crypto.randomUUID} refe={refe} />;
+            })
           )}
         </div>
       </section>
@@ -241,6 +243,22 @@ function EducationPreview({ edu }) {
       </div>
       <div className={previewCSS.educationBody}>
         <p>{edu.description}</p>
+      </div>
+    </div>
+  );
+}
+
+function ReferencesPreview({ refe }) {
+  return (
+    <div className={previewCSS.referencesBox}>
+      <div className={previewCSS.referencesHeader}>
+        <h5>
+          {refe.referent} {refe.company}
+        </h5>
+      </div>
+      <div className={previewCSS.referencesBody}>
+        <p>{refe.email}</p>
+        <p>{refe.phone}</p>
       </div>
     </div>
   );
