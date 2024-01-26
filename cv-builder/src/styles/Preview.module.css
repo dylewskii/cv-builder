@@ -68,22 +68,27 @@
 }
 
 /* EMPLOYMENT */
-.employmentBox {
+.employmentBox,
+.educationBox {
   margin: 0rem 0 1.5rem 0;
 }
 
 .employmentHeader,
-.employmentTitle {
+.employmentTitle,
+.educationHeader,
+.educationTitle {
   display: flex;
   align-items: center;
 }
 
-.employmentHeader {
+.employmentHeader,
+.educationHeader {
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
 
-.employmentHeader p {
+.employmentHeader p,
+.educationHeader p {
   font-size: 0.8rem;
 }
 
@@ -92,7 +97,8 @@
   margin-right: 3px;
 }
 
-.employmentBody {
+.employmentBody,
+.educationBody {
   padding: 0rem 2rem;
 }
 
