@@ -53,6 +53,7 @@ export default function CreateCV() {
     phone: "",
     email: "",
   });
+  const [hideReferences, setHideReferences] = useState(true);
 
   // Form Handler Functions
   const handleInputChange = (e, draftSetter) => {
@@ -140,15 +141,19 @@ export default function CreateCV() {
         </div>
         <div className={previewCSS.previewReferences}>
           <h4>References</h4>
-          {!references.hide ? (
-            <p>References available upon request</p>
+          {hideReferences ? (
+            <p className={previewCSS.hideReferences}>Available upon request</p>
           ) : (
-            <div className={previewCSS.referenceBox}>
-              <h5>
-                {references.referent} {references.company}
-              </h5>
-              <p>{references.email}</p>
-              <p>{references.phone}</p>
+            <div className={previewCSS.referencesBox}>
+              <div className={previewCSS.referencesHeader}>
+                <h5>
+                  {references.referent} {references.company}
+                </h5>
+              </div>
+              <div className={previewCSS.referencesBody}>
+                <p>{references.email}</p>
+                <p>{references.phone}</p>
+              </div>
             </div>
           )}
         </div>
@@ -190,6 +195,8 @@ export default function CreateCV() {
             handleSubmit={(e) =>
               handleSubmit(e, setReferences, draftReferences, "references")
             }
+            hideReferences={hideReferences}
+            setHideReferences={setHideReferences}
           />
         </form>
       </section>
@@ -225,7 +232,7 @@ function EducationPreview({ edu }) {
         <div className={previewCSS.educationTitle}>
           <FaBullseye className={previewCSS.icon} />
           <h5>
-            {edu.degree} <span>{"  " + edu.school}</span>
+            {edu.degree} <span>{" at " + edu.school}</span>
           </h5>
         </div>
         <p>

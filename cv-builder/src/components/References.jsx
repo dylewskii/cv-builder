@@ -8,8 +8,9 @@ export default function References({
   draftReferences,
   handleInputChange,
   handleSubmit,
+  hideReferences,
+  setHideReferences,
 }) {
-  const [hideReferences, setHideReferences] = useState(true);
   const [expandedEntries, setExpandedEntries] = useState([]);
   const [entriesBeingEdited, setEntriesBeingEdited] = useState([]);
   const referencesAdded = references !== null || references.length !== 0;
