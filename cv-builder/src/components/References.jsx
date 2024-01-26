@@ -1,6 +1,7 @@
-import Entry from "./Entry";
 import { useState } from "react";
+import Entry from "./Entry";
 import entryCSS from "../styles/Entry.module.css";
+import createCSS from "../styles/CreateCV.module.css";
 
 export default function References({
   references,
@@ -60,9 +61,10 @@ export default function References({
           ))
         : null}
 
-      <div>
+      <div className={createCSS.hideRefs}>
         <label>Available upon request</label>
         <input
+          className={createCSS.checkbox}
           type="checkbox"
           name="hide"
           checked={hideReferences}
