@@ -67,41 +67,43 @@
   font-size: 0.8rem;
 }
 
-/* EMPLOYMENT */
+/* PREVIEWS FOR EMPLOYMENT / EDUCATION / REFERENCES */
 .employmentBox,
-.educationBox {
+.educationBox,
+.referencesBox {
   margin: 0rem 0 1.5rem 0;
 }
 
 .employmentHeader,
 .employmentTitle,
 .educationHeader,
-.educationTitle {
+.educationTitle,
+.referencesHeader,
+.referencesTitle {
   display: flex;
   align-items: center;
 }
 
 .employmentHeader,
-.educationHeader {
+.educationHeader,
+.referencesHeader {
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
 
 .employmentHeader p,
-.educationHeader p {
+.educationHeader p,
+.referencesHeader p {
   font-size: 0.8rem;
+}
+
+.employmentBody,
+.educationBody,
+.referencesBody {
+  padding: 0rem 2rem;
 }
 
 .icon {
   width: 0.6rem;
   margin-right: 3px;
 }
-
-.employmentBody,
-.educationBody {
-  padding: 0rem 2rem;
-}
-
-/* EDUCATION */
-
-/* REFERENCES */
