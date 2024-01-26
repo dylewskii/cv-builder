@@ -134,13 +134,9 @@ export default function CreateCV() {
         </div>
         <div className={previewCSS.previewEducation}>
           <h4>Education</h4>
-          <div className={previewCSS.educationBox}>
-            <h5>
-              {education.school} {education.degree} {education.dateRange}
-            </h5>
-            <p>{education.city}</p>
-            <p>{education.description}</p>
-          </div>
+          {education.map((edu, i) => {
+            return <EducationPreview key={crypto.randomUUID()} edu={edu} />;
+          })}
         </div>
         <div className={previewCSS.previewReferences}>
           <h4>References</h4>
@@ -217,6 +213,21 @@ function EmploymentPreview({ emp }) {
       </div>
       <div className={previewCSS.employmentBody}>
         <p>{emp.description}</p>
+      </div>
+    </div>
+  );
+}
+
+function EducationPreview({ edu }) {
+  return (
+    <div className={previewCSS.educationBox}>
+      <div className={previewCSS.educationHeader}>
+        <div className={previewCSS.educationTitle}>
+          <FaBullseye className={previewCSS.icon} />
+          <h5>
+            {edu.degree} <span>{"  " + edu.school}</span>
+          </h5>
+        </div>
       </div>
     </div>
   );
