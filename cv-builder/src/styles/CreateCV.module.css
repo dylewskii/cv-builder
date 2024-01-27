@@ -35,7 +35,7 @@ p + label {
   margin-bottom: 0.8rem;
 }
 
-.editPanel form input,
+.editPanel form input:not([type="checkbox"]),
 .editPanel form textarea {
   padding: 1em;
   border: none;
@@ -50,25 +50,6 @@ p + label {
   justify-content: center;
   align-items: center;
   margin: 1rem 0;
-}
-
-.hideRefs > .checkbox {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  appearance: none;
-  cursor: pointer;
-
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  margin: 0 0 0 0.5rem;
-  box-shadow: 0 0 0 2px var(--dark-black);
-  border: 3px solid var(--dark-black);
-}
-
-.checkbox:checked {
-  background-color: var(--dark-active);
 }
 
 @media (min-width: 750px) {
