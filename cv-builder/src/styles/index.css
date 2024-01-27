@@ -95,6 +95,27 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  cursor: pointer;
+
+  width: 2rem;
+  height: 0.9rem;
+  padding: 0;
+  margin: 0 0 0 0.75rem;
+  box-shadow: 0 0 0 2px black;
+  border: 2px solid black;
+  border-radius: 3px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--dark-active);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: var(--dark-black);
