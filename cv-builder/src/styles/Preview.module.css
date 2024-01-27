@@ -18,6 +18,10 @@
   flex-direction: column;
 }
 
+.previewReferences {
+  align-items: center;
+}
+
 .previewDetails::after,
 .previewSummary::after,
 .previewEmployment::after,
