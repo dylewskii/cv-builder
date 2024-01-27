@@ -101,11 +101,22 @@ function EntryForm({
   handleEntryEdit,
   fieldNames,
 }) {
+  function getLabel(field) {
+    switch (field) {
+      case "jobTitle":
+        return "Job Title";
+      case "dateRange":
+        return "Start & End Date";
+      default:
+        return capitalizeFirstLetter(field);
+    }
+  }
+
   return (
     <div className={entryCSS.formExpanded}>
       {fieldNames.map((field) => (
         <div key={field}>
-          <label>{capitalizeFirstLetter(field)}</label>
+          <label>{getLabel(field)}</label>
           <input
             disabled={!isBeingEdited}
             type="text"
