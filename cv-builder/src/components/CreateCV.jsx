@@ -67,6 +67,17 @@ export default function CreateCV() {
   const handleSubmit = (e, dataSetter, draft, entryType) => {
     e.preventDefault();
 
+    // check if draft values are empty
+    let draftValuesArray = Object.values(draft).splice(1);
+    const draftIsEmpty = draftValuesArray.every(
+      (val) => val === null || val === ""
+    );
+
+    // if empty, prevent empty form submit
+    if (draftIsEmpty) {
+      return;
+    }
+
     dataSetter((prevEmployment) => [...prevEmployment, draft]);
 
     switch (entryType) {
