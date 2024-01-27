@@ -114,10 +114,11 @@ function EntryForm({
 
   return (
     <div className={entryCSS.formExpanded}>
-      {fieldNames.map((field) => (
+      {fieldNames.map((field, i) => (
         <div key={field}>
-          <label>{getLabel(field)}</label>
+          <label htmlFor={`entryFormInput-${i}`}>{getLabel(field)}</label>
           <input
+            id={`entryFormInput-${i}`}
             disabled={!isBeingEdited}
             type="text"
             name={field}
