@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import tableCSS from "../styles/FilterableCVTable.module.css";
 
 export default function FilterableCVTable({ isCreating, handleCreateClick }) {
