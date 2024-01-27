@@ -31,7 +31,7 @@ p + label {
   margin-bottom: 0.2rem;
 }
 
-.editPanel form input:not([type="radio"]) {
+.editPanel form input:not([type="checkbox"]) {
   margin-bottom: 0.8rem;
 }
 
