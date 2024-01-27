@@ -1,11 +1,11 @@
 import { useState } from "react";
 import createCSS from "../styles/CreateCV.module.css";
 import previewCSS from "../styles/Preview.module.css";
-import PersonalDetails from "./PersonalDetails";
-import ProfessionalSummary from "./ProfessionalSummary";
-import EmploymentHistory from "./EmploymentHistory";
-import Education from "./Education";
-import References from "./References";
+import PersonalDetails from "./Forms/PersonalDetails";
+import ProfessionalSummary from "./Forms/ProfessionalSummary";
+import EmploymentHistory from "./Forms/EmploymentHistory";
+import Education from "./Forms/Education";
+import References from "./Forms/References";
 import { FaBullseye } from "react-icons/fa";
 
 export default function CreateCV() {

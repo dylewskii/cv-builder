@@ -3,13 +3,15 @@ export default function ProfessionalSummary({ summary, setSummary }) {
     <>
       <h3>Professional Summary</h3>
       <p>
-        Write a short & captivating introduction. Mention your role, experience
-        & most importantly - your biggest achievements, best qualities and
-        skills.
+        <label htmlFor="pro-summary">
+          Write a short & captivating introduction. Mention your role,
+          experience & most importantly - your biggest achievements, best
+          qualities and skills.
+        </label>
       </p>
       <textarea
-        name=""
-        id=""
+        id="pro-summary"
+        name="summary"
         cols="30"
         rows="4"
         value={summary}

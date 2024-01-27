@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Entry from "./Entry";
-import entryCSS from "../styles/Entry.module.css";
-import createCSS from "../styles/CreateCV.module.css";
+import Entry from "../Entry";
+import entryCSS from "../../styles/Entry.module.css";
+import createCSS from "../../styles/CreateCV.module.css";
 
 export default function References({
   references,
@@ -62,8 +62,9 @@ export default function References({
         : null}
 
       <div className={createCSS.hideRefs}>
-        <label>Available upon request</label>
+        <label htmlFor="ref-hide">Available upon request</label>
         <input
+          id="ref-hide"
           className={createCSS.checkbox}
           type="checkbox"
           name="hide"
@@ -73,8 +74,9 @@ export default function References({
         />
       </div>
 
-      <label>Referent&#39;s Full Name</label>
+      <label htmlFor="ref-referent">Referent&#39;s Full Name</label>
       <input
+        id="ref-referent"
         disabled={hideReferences}
         type="text"
         name="referent"
@@ -82,8 +84,9 @@ export default function References({
         onChange={handleInputChange}
       />
 
-      <label>Company</label>
+      <label htmlFor="ref-company">Company</label>
       <input
+        id="ref-company"
         disabled={hideReferences}
         type="text"
         name="company"
@@ -91,8 +94,9 @@ export default function References({
         onChange={handleInputChange}
       />
 
-      <label>Phone</label>
+      <label htmlFor="ref-phone">Phone</label>
       <input
+        id="ref-phone"
         disabled={hideReferences}
         type="tel"
         name="phone"
@@ -100,8 +104,9 @@ export default function References({
         onChange={handleInputChange}
       />
 
-      <label>Email</label>
+      <label htmlFor="ref-email">Email</label>
       <input
+        id="ref-email"
         disabled={hideReferences}
         type="email"
         name="email"

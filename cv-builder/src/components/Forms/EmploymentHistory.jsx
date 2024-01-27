@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Entry from "./Entry";
-import entryCSS from "../styles/Entry.module.css";
+import Entry from "../Entry";
+import entryCSS from "../../styles/Entry.module.css";
 
 export default function EmploymentHistory({
   draftEmployment,
@@ -65,24 +65,27 @@ export default function EmploymentHistory({
           ))
         : null}
 
-      <label>Job Title</label>
+      <label htmlFor="emp-jobTitle">Job Title</label>
       <input
+        id="emp-jobTitle"
         type="text"
         name="jobTitle"
         value={draftEmployment.jobTitle || ""}
         onChange={handleInputChange}
       />
 
-      <label>Employer</label>
+      <label htmlFor="emp-employer">Employer</label>
       <input
+        id="emp-employer"
         type="text"
         name="employer"
         value={draftEmployment.employer || ""}
         onChange={handleInputChange}
       />
 
-      <label>Start & End Date</label>
+      <label htmlFor="emp-dateRange">Start & End Date</label>
       <input
+        id="emp-dateRange"
         type="text"
         name="dateRange"
         placeholder="MM/YY - MM/YY"
@@ -90,16 +93,18 @@ export default function EmploymentHistory({
         onChange={handleInputChange}
       />
 
-      <label>City</label>
+      <label htmlFor="emp-city">City</label>
       <input
+        id="emp-city"
         type="text"
         name="city"
         value={draftEmployment.city || ""}
         onChange={handleInputChange}
       />
 
-      <label>Description</label>
+      <label htmlFor="emp-description">Description</label>
       <input
+        id="emp-description"
         type="text"
         name="description"
         value={draftEmployment.description || ""}

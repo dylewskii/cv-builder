@@ -1,6 +1,6 @@
-import Entry from "./Entry";
+import Entry from "../Entry";
 import { useState } from "react";
-import entryCSS from "../styles/Entry.module.css";
+import entryCSS from "../../styles/Entry.module.css";
 
 export default function Education({
   education,
@@ -68,40 +68,45 @@ export default function Education({
           ))
         : null}
 
-      <label>School</label>
+      <label htmlFor="edu-school">School</label>
       <input
+        id="edu-school"
         type="text"
         name="school"
         value={draftEducation.school || ""}
         onChange={handleInputChange}
       />
 
-      <label>Degree</label>
+      <label htmlFor="edu-degree">Degree</label>
       <input
+        id="edu-degree"
         type="text"
         name="degree"
         value={draftEducation.degree || ""}
         onChange={handleInputChange}
       />
 
-      <label>Start & End Date</label>
+      <label htmlFor="edu-dateRange">Start & End Date</label>
       <input
+        id="edu-dateRange"
         type="text"
         name="dateRange"
         value={draftEducation.dateRange || ""}
         onChange={handleInputChange}
       />
 
-      <label>City</label>
+      <label htmlFor="edu-city">City</label>
       <input
+        id="edu-city"
         type="text"
         name="city"
         value={draftEducation.city || ""}
         onChange={handleInputChange}
       />
 
-      <label>Description</label>
+      <label htmlFor="edu-description">Description</label>
       <input
+        id="edu-description"
         type="text"
         name="description"
         value={draftEducation.description || ""}
