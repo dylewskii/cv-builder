@@ -62,17 +62,21 @@ export default function CreateCV() {
   // PDF Download Handler
   const handleDownloadPdf = async () => {
     const element = printRef.current;
-    console.log(element);
-    const canvas = await html2canvas(element);
+
+    const scale = 5; // increased scale to improve quality
+    const canvas = await html2canvas(element, {
+      scale: scale,
+      useCORS: true, // helps images load correctly from external sources
+    });
     const data = canvas.toDataURL("image/png");
 
-    const pdf = new jsPDF();
+    const pdf = new jsPDF("p", "mm", "a4"); // orientation/unit/format arguments
     const imgProperties = pdf.getImageProperties(data);
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
 
     pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
-    pdf.save("print.pdf");
+    pdf.save("cv.pdf");
   };
 
   const handleDownloadPng = async () => {};
