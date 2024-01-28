@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import createCSS from "../styles/CreateCV.module.css";
 import previewCSS from "../styles/Preview.module.css";
 import PersonalDetails from "./Forms/PersonalDetails";
@@ -9,6 +11,8 @@ import References from "./Forms/References";
 import { FaBullseye } from "react-icons/fa";
 
 export default function CreateCV() {
+  const printRef = useRef();
+
   // Personal Details State
   const [details, setDetails] = useState({
     fName: "",
@@ -54,6 +58,24 @@ export default function CreateCV() {
     email: "",
   });
   const [hideReferences, setHideReferences] = useState(true);
+
+  // PDF Download Handler
+  const handleDownloadPdf = async () => {
+    const element = printRef.current;
+    console.log(element);
+    const canvas = await html2canvas(element);
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF();
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("print.pdf");
+  };
+
+  const handleDownloadPng = async () => {};
 
   // Form Handler Functions
   const handleInputChange = (e, draftSetter) => {
@@ -118,102 +140,118 @@ export default function CreateCV() {
 
   // PREVIEW
   return (
-    <div className={createCSS.createContainer}>
-      <section className={previewCSS.previewPanel}>
-        {/* Preview - Personal Details */}
-        <div className={previewCSS.previewDetails}>
-          <h4>
-            {details.fName} {details.lName}
-          </h4>
-          <div className={previewCSS.detailsLocation}>
-            <p className={previewCSS.detailsCity}>{details.city}</p>
-            <p className={previewCSS.detailsCountry}>{details.country}</p>
+    <>
+      <div className={createCSS.controls}>
+        <button onClick={handleDownloadPdf}>Download PDF</button>
+        <button onClick={handleDownloadPng}>Download PNG</button>
+      </div>
+      <div className={createCSS.createContainer}>
+        <section ref={printRef} className={previewCSS.previewPanel}>
+          {/* Preview - Personal Details */}
+          <div className={previewCSS.previewDetails}>
+            <h4>
+              {details.fName} {details.lName}
+            </h4>
+            <div className={previewCSS.detailsLocation}>
+              <p className={previewCSS.detailsCity}>{details.city}</p>
+              <p className={previewCSS.detailsCountry}>{details.country}</p>
+            </div>
+            <div className={previewCSS.detailsContact}>
+              <p className={previewCSS.detailsEmail}>{details.email}</p>
+              <p className={previewCSS.detailsTel}>{details.tel}</p>
+            </div>
           </div>
-          <div className={previewCSS.detailsContact}>
-            <p className={previewCSS.detailsEmail}>{details.email}</p>
-            <p className={previewCSS.detailsTel}>{details.tel}</p>
+
+          {/* Preview - Professional Summary */}
+          <div className={previewCSS.previewSummary}>
+            <h4>Profile</h4>
+            <p>{summary}</p>
           </div>
-        </div>
 
-        {/* Preview - Professional Summary */}
-        <div className={previewCSS.previewSummary}>
-          <h4>Profile</h4>
-          <p>{summary}</p>
-        </div>
+          {/* Preview - Employment History */}
+          <div className={previewCSS.previewEmployment}>
+            <h4>Employment History</h4>
+            <div className={previewCSS.employmentBox}>
+              {employment.map((emp) => {
+                return (
+                  <EmploymentPreview key={crypto.randomUUID()} emp={emp} />
+                );
+              })}
+            </div>
+          </div>
 
-        {/* Preview - Employment History */}
-        <div className={previewCSS.previewEmployment}>
-          <h4>Employment History</h4>
-          <div className={previewCSS.employmentBox}>
-            {employment.map((emp) => {
-              return <EmploymentPreview key={crypto.randomUUID()} emp={emp} />;
+          {/* Preview - Education */}
+          <div className={previewCSS.previewEducation}>
+            <h4>Education</h4>
+            {education.map((edu) => {
+              return <EducationPreview key={crypto.randomUUID()} edu={edu} />;
             })}
           </div>
-        </div>
 
-        {/* Preview - Education */}
-        <div className={previewCSS.previewEducation}>
-          <h4>Education</h4>
-          {education.map((edu) => {
-            return <EducationPreview key={crypto.randomUUID()} edu={edu} />;
-          })}
-        </div>
+          {/* Preview - References */}
+          <div className={previewCSS.previewReferences}>
+            <h4>References</h4>
+            {hideReferences ? (
+              <p className={previewCSS.hideReferences}>
+                Available upon request
+              </p>
+            ) : (
+              references.map((refe) => {
+                return (
+                  <ReferencesPreview key={crypto.randomUUID} refe={refe} />
+                );
+              })
+            )}
+          </div>
+        </section>
+        <section className={createCSS.editPanel}>
+          <form>
+            <PersonalDetails details={details} setDetails={setDetails} />
 
-        {/* Preview - References */}
-        <div className={previewCSS.previewReferences}>
-          <h4>References</h4>
-          {hideReferences ? (
-            <p className={previewCSS.hideReferences}>Available upon request</p>
-          ) : (
-            references.map((refe) => {
-              return <ReferencesPreview key={crypto.randomUUID} refe={refe} />;
-            })
-          )}
-        </div>
-      </section>
-      <section className={createCSS.editPanel}>
-        <form>
-          <PersonalDetails details={details} setDetails={setDetails} />
+            <ProfessionalSummary summary={summary} setSummary={setSummary} />
 
-          <ProfessionalSummary summary={summary} setSummary={setSummary} />
+            <EmploymentHistory
+              draftEmployment={draftEmployment}
+              setDraftEmployment={setDraftEmployment}
+              employment={employment}
+              setEmployment={setEmployment}
+              handleInputChange={(e) =>
+                handleInputChange(e, setDraftEmployment)
+              }
+              handleSubmit={(e) =>
+                handleSubmit(e, setEmployment, draftEmployment, "employment")
+              }
+            />
 
-          <EmploymentHistory
-            draftEmployment={draftEmployment}
-            setDraftEmployment={setDraftEmployment}
-            employment={employment}
-            setEmployment={setEmployment}
-            handleInputChange={(e) => handleInputChange(e, setDraftEmployment)}
-            handleSubmit={(e) =>
-              handleSubmit(e, setEmployment, draftEmployment, "employment")
-            }
-          />
+            <Education
+              draftEducation={draftEducation}
+              setDraftEducation={setDraftEducation}
+              education={education}
+              setEducation={setEducation}
+              handleInputChange={(e) => handleInputChange(e, setDraftEducation)}
+              handleSubmit={(e) =>
+                handleSubmit(e, setEducation, draftEducation, "education")
+              }
+            />
 
-          <Education
-            draftEducation={draftEducation}
-            setDraftEducation={setDraftEducation}
-            education={education}
-            setEducation={setEducation}
-            handleInputChange={(e) => handleInputChange(e, setDraftEducation)}
-            handleSubmit={(e) =>
-              handleSubmit(e, setEducation, draftEducation, "education")
-            }
-          />
-
-          <References
-            draftReferences={draftReferences}
-            setDraftReferences={setDraftReferences}
-            references={references}
-            setReferences={setReferences}
-            handleInputChange={(e) => handleInputChange(e, setDraftReferences)}
-            handleSubmit={(e) =>
-              handleSubmit(e, setReferences, draftReferences, "references")
-            }
-            hideReferences={hideReferences}
-            setHideReferences={setHideReferences}
-          />
-        </form>
-      </section>
-    </div>
+            <References
+              draftReferences={draftReferences}
+              setDraftReferences={setDraftReferences}
+              references={references}
+              setReferences={setReferences}
+              handleInputChange={(e) =>
+                handleInputChange(e, setDraftReferences)
+              }
+              handleSubmit={(e) =>
+                handleSubmit(e, setReferences, draftReferences, "references")
+              }
+              hideReferences={hideReferences}
+              setHideReferences={setHideReferences}
+            />
+          </form>
+        </section>
+      </div>
+    </>
   );
 }
 
