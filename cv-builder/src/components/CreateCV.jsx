@@ -79,7 +79,7 @@ export default function CreateCV() {
     pdf.save("cv.pdf");
   };
 
-  const handleDownloadPng = async () => {};
+  const handleCvSave = () => {};
 
   // Form Handler Functions
   const handleInputChange = (e, draftSetter) => {
@@ -147,7 +147,7 @@ export default function CreateCV() {
     <>
       <div className={createCSS.controls}>
         <button onClick={handleDownloadPdf}>Download PDF</button>
-        <button onClick={handleDownloadPng}>Download PNG</button>
+        <button onClick={handleCvSave}>Save CV</button>
       </div>
       <div className={createCSS.createContainer}>
         <section ref={printRef} className={previewCSS.previewPanel}>
