@@ -8,7 +8,10 @@ import ProfessionalSummary from "./Forms/ProfessionalSummary";
 import EmploymentHistory from "./Forms/EmploymentHistory";
 import Education from "./Forms/Education";
 import References from "./Forms/References";
-import { FaBullseye } from "react-icons/fa";
+//Previews
+import EmploymentPreview from "./Previews/EmploymentPreview";
+import EducationPreview from "./Previews/EducationPreview";
+import ReferencesPreview from "./Previews/ReferencesPreview";
 
 export default function CreateCV() {
   const printRef = useRef();
@@ -256,63 +259,5 @@ export default function CreateCV() {
         </section>
       </div>
     </>
-  );
-}
-
-function EmploymentPreview({ emp }) {
-  return (
-    <div className={previewCSS.employmentBox}>
-      <div className={previewCSS.employmentHeader}>
-        <div className={previewCSS.employmentTitle}>
-          <FaBullseye className={previewCSS.icon} />
-          <h5>
-            {emp.jobTitle} <span>{" - " + emp.employer}</span>
-          </h5>
-        </div>
-        <p>
-          {emp.city} <span>{"(" + emp.dateRange + ")"}</span>
-        </p>
-      </div>
-      <div className={previewCSS.employmentBody}>
-        <p>{emp.description}</p>
-      </div>
-    </div>
-  );
-}
-
-function EducationPreview({ edu }) {
-  return (
-    <div className={previewCSS.educationBox}>
-      <div className={previewCSS.educationHeader}>
-        <div className={previewCSS.educationTitle}>
-          <FaBullseye className={previewCSS.icon} />
-          <h5>
-            {edu.degree} <span>{" at " + edu.school}</span>
-          </h5>
-        </div>
-        <p>
-          {edu.city} <span>{"(" + edu.dateRange + ")"}</span>
-        </p>
-      </div>
-      <div className={previewCSS.educationBody}>
-        <p>{edu.description}</p>
-      </div>
-    </div>
-  );
-}
-
-function ReferencesPreview({ refe }) {
-  return (
-    <div className={previewCSS.referencesBox}>
-      <div className={previewCSS.referencesHeader}>
-        <h5>
-          {refe.referent} {refe.company}
-        </h5>
-      </div>
-      <div className={previewCSS.referencesBody}>
-        <p>{refe.email}</p>
-        <p>{refe.phone}</p>
-      </div>
-    </div>
   );
 }
