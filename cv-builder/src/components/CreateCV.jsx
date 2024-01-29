@@ -1,14 +1,17 @@
 import { useState, useRef } from "react";
+// PDF
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+// CSS
 import createCSS from "../styles/CreateCV.module.css";
 import previewCSS from "../styles/Preview.module.css";
+// Forms
 import PersonalDetails from "./Forms/PersonalDetails";
 import ProfessionalSummary from "./Forms/ProfessionalSummary";
 import EmploymentHistory from "./Forms/EmploymentHistory";
 import Education from "./Forms/Education";
 import References from "./Forms/References";
-//Previews
+// Previews
 import Preview from "./Previews/Preview";
 
 export default function CreateCV() {
@@ -160,7 +163,7 @@ export default function CreateCV() {
           education={education}
           references={references}
           hideReferences={hideReferences}
-        ></Preview>
+        />
         <section className={createCSS.editPanel}>
           <form>
             <PersonalDetails details={details} setDetails={setDetails} />
