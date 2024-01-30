@@ -8,6 +8,7 @@ import FilterableCVTable from "./components/FilterableCVTable";
 import CV from "./components/CV";
 import CreateCV from "./components/CreateCV";
 import Footer from "./components/Footer";
+import { DataProvider } from "./context/DataContext";
 
 export default function App() {
   const [isCreating, setIsCreating] = useState(false);
@@ -19,22 +20,24 @@ export default function App() {
   return (
     <>
       <Header />
-      <div className={appCSS.wrapper}>
-        {!isCreating ? (
-          <>
-            <FilterableCVTable handleCreateClick={handleCreateClick} />
-            <CV handleCreateClick={handleCreateClick} />
-          </>
-        ) : (
-          <>
-            <FilterableCVTable
-              isCreating={isCreating}
-              handleCreateClick={handleCreateClick}
-            />
-            <CreateCV />
-          </>
-        )}
-      </div>
+      <DataProvider>
+        <div className={appCSS.wrapper}>
+          {!isCreating ? (
+            <>
+              <FilterableCVTable handleCreateClick={handleCreateClick} />
+              <CV handleCreateClick={handleCreateClick} />
+            </>
+          ) : (
+            <>
+              <FilterableCVTable
+                isCreating={isCreating}
+                handleCreateClick={handleCreateClick}
+              />
+              <CreateCV />
+            </>
+          )}
+        </div>
+      </DataProvider>
       <Footer />
     </>
   );
