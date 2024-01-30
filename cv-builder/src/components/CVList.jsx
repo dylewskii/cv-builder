@@ -1,37 +1,29 @@
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
 import cvList from "../styles/CVList.module.css";
-// import { useState } from "react";
+import CV from "./CV";
 
-export default function CV({ handleCreateClick }) {
+export default function CVList({ handleCreateClick }) {
+  const { allDocuments, setAllDocuments } = useContext(DataContext);
   return (
     <main className={cvList.cvContainer}>
-      <section className={cvList.cvSection}>
-        <div className={cvList.cvPreview}>
-          <img alt="CV preview"></img>
-        </div>
-        <div className={cvList.cvOptions}>
-          <p className={cvList.cvName}>Jon Jones</p>
-          <p>Created: </p>
-          <nav className={cvList.cvNav}>
-            <ul>
-              <li>
-                <a>Preview</a>
-              </li>
-              <li>
-                <a>Edit</a>
-              </li>
-              <li>
-                <a>Download PDF</a>
-              </li>
-              <li>
-                <a>Delete</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </section>
+      {allDocuments.map((doc, i) => (
+        <CV key={i}>
+          <CV.Preview>
+            <img alt="CV preview" />
+          </CV.Preview>
+          <CV.Options>
+            <CV.Name>
+              {`${doc.personalDetails.fName} ${doc.personalDetails.lName}`}
+            </CV.Name>
+            <p>Created: {/* need to render the creation date */}</p>
+            <CV.Nav />
+          </CV.Options>
+        </CV>
+      ))}
 
-      <section className={cvList.cvSection}>
-        <div className={cvList.cvPreview} onClick={handleCreateClick}>
+      <CV key={crypto.randomUUID()}>
+        <CV.Preview onClick={handleCreateClick}>
           <svg
             className={cvList.plusIcon}
             xmlns="http://www.w3.org/2000/svg"
@@ -45,15 +37,15 @@ export default function CV({ handleCreateClick }) {
               d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"
             />
           </svg>
-        </div>
-        <div className={cvList.cvOptions}>
-          <p className={cvList.cvName}>Create a CV</p>
+        </CV.Preview>
+        <CV.Options>
+          <CV.Name>Create a CV</CV.Name>
           <p>
             Create a tailored CV for each job application - increase your
             chances of getting hired!
           </p>
-        </div>
-      </section>
+        </CV.Options>
+      </CV>
     </main>
   );
 }
