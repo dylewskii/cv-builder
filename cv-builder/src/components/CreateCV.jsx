@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import DataContext from "../context/DataContext";
 // PDF
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
@@ -15,6 +16,8 @@ import References from "./Forms/References";
 import Preview from "./Previews/Preview";
 
 export default function CreateCV() {
+  const { allDocuments, setAllDocuments } = useContext(DataContext);
+
   const printRef = useRef();
 
   // Personal Details State
@@ -61,29 +64,55 @@ export default function CreateCV() {
     phone: "",
     email: "",
   });
+
   const [hideReferences, setHideReferences] = useState(true);
 
-  // PDF Download Handler
-  const handleDownloadPdf = async () => {
-    const element = printRef.current;
-
-    const scale = 5; // increased scale to improve quality
-    const canvas = await html2canvas(element, {
-      scale: scale,
-      useCORS: true, // helps images load correctly from external sources
-    });
-    const data = canvas.toDataURL("image/png");
-
-    const pdf = new jsPDF("p", "mm", "a4"); // orientation/unit/format arguments
-    const imgProperties = pdf.getImageProperties(data);
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
-
-    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
-    pdf.save("cv.pdf");
+  const resetState = () => {
+    setDetails([]);
+    setSummary("");
+    setEmployment([]);
+    setEducation([]);
+    setReferences([]);
   };
 
-  const handleCvSave = () => {};
+  const resetDraftState = () => {
+    setDraftDetails({
+      fName: "",
+      lName: "",
+      email: "",
+      tel: "",
+      city: "",
+      country: "",
+    });
+
+    setDraftSummary("");
+
+    setDraftEmployment({
+      id: crypto.randomUUID(),
+      jobTitle: "",
+      employer: "",
+      dateRange: "",
+      city: "",
+      description: "",
+    });
+
+    setDraftEducation({
+      id: crypto.randomUUID(),
+      school: "",
+      degree: "",
+      dateRange: "",
+      city: "",
+      description: "",
+    });
+
+    setDraftReferences({
+      id: crypto.randomUUID(),
+      referent: "",
+      company: "",
+      phone: "",
+      email: "",
+    });
+  };
 
   // Form Handler Functions
   const handleInputChange = (e, draftSetter) => {
@@ -144,6 +173,47 @@ export default function CreateCV() {
       default:
         console.log("Invalid Entry Type");
     }
+  };
+
+  // PDF Download Handler
+  const handleDownloadPdf = async () => {
+    const element = printRef.current;
+
+    const scale = 5; // increased scale to improve quality
+    const canvas = await html2canvas(element, {
+      scale: scale,
+      useCORS: true, // helps images load correctly from external sources
+    });
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF("p", "mm", "a4"); // orientation/unit/format arguments
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("cv.pdf");
+  };
+
+  // Save CV Handler
+  const compileCV = () => {
+    const cv = {
+      personalDetails: { ...details },
+      professionalSummary: summary,
+      education: [...education],
+      employment: [...employment],
+      references: [...references],
+      hideReferences: hideReferences,
+    };
+
+    return cv;
+  };
+
+  const handleCvSave = () => {
+    const newCv = compileCV();
+    setAllDocuments((prev) => [...prev, newCv]);
+
+    console.log(allDocuments);
   };
 
   // PREVIEW
