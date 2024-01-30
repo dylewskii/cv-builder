@@ -5,7 +5,7 @@ import appCSS from "./styles/App.module.css";
 // Components
 import Header from "./components/Header";
 import FilterableCVTable from "./components/FilterableCVTable";
-import CV from "./components/CV";
+import CVList from "./components/CVList";
 import CreateCV from "./components/CreateCV";
 import Footer from "./components/Footer";
 import { DataProvider } from "./context/DataContext";
@@ -25,7 +25,7 @@ export default function App() {
           {!isCreating ? (
             <>
               <FilterableCVTable handleCreateClick={handleCreateClick} />
-              <CV handleCreateClick={handleCreateClick} />
+              <CVList handleCreateClick={handleCreateClick} />
             </>
           ) : (
             <>
