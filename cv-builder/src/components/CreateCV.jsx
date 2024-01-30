@@ -114,8 +114,8 @@ export default function CreateCV() {
       case "employment":
         setDraftEmployment({
           id: crypto.randomUUID(),
-          school: "",
-          degree: "",
+          jobTitle: "",
+          employer: "",
           dateRange: "",
           city: "",
           description: "",
