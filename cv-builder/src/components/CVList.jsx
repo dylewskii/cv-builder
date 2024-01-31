@@ -4,11 +4,11 @@ import cvList from "../styles/CVList.module.css";
 import CV from "./CV";
 
 export default function CVList({ handleCreateClick }) {
-  const { allDocuments, setAllDocuments } = useContext(DataContext);
+  const { allDocuments } = useContext(DataContext);
   return (
     <main className={cvList.cvContainer}>
       {allDocuments.map((doc, i) => (
-        <CV key={i}>
+        <CV key={doc.id}>
           <CV.Preview>
             <img alt="CV preview" />
           </CV.Preview>
@@ -17,7 +17,7 @@ export default function CVList({ handleCreateClick }) {
               {`${doc.personalDetails.fName} ${doc.personalDetails.lName}`}
             </CV.Name>
             <p>Created: {/* need to render the creation date */}</p>
-            <CV.Nav />
+            <CV.Nav cvId={doc.id} />
           </CV.Options>
         </CV>
       ))}

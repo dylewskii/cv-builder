@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
 import cvList from "../styles/CVList.module.css";
 
 export default function CV({ children }) {
@@ -22,7 +24,8 @@ CV.Name = ({ children }) => {
   return <p className={cvList.cvName}>{children}</p>;
 };
 
-CV.Nav = ({}) => {
+CV.Nav = ({ cvId }) => {
+  const { handleDeleteCv } = useContext(DataContext);
   return (
     <nav className={cvList.cvNav}>
       <ul>
@@ -36,7 +39,7 @@ CV.Nav = ({}) => {
           <a>Download</a>
         </li>
         <li>
-          <a>Delete</a>
+          <a onClick={() => handleDeleteCv(cvId)}>Delete</a>
         </li>
       </ul>
     </nav>
