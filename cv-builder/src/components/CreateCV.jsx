@@ -198,6 +198,7 @@ export default function CreateCV() {
   // Save CV Handler
   const compileCV = () => {
     const cv = {
+      id: crypto.randomUUID(),
       personalDetails: { ...details },
       professionalSummary: summary,
       education: [...education],
