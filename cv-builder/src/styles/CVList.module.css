@@ -15,8 +15,10 @@
   align-items: center;
   border: 2px solid var(--dark-black);
   border-radius: 5px;
-  min-width: 150px;
-  min-height: 250px;
+  min-width: 200px;
+  min-height: 300px;
+  width: 200px;
+  height: 300px;
   cursor: pointer;
 }
 
@@ -65,4 +67,10 @@
 
 .cvPreview:hover .plusIconPath {
   fill: var(--dark-active);
+}
+
+.imgPreview {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
 }
