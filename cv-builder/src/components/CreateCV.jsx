@@ -175,6 +175,21 @@ export default function CreateCV() {
     }
   };
 
+  // Returns compiled CV object
+  const compileCV = () => {
+    const cv = {
+      id: crypto.randomUUID(),
+      personalDetails: { ...details },
+      professionalSummary: summary,
+      education: [...education],
+      employment: [...employment],
+      references: [...references],
+      hideReferences: hideReferences,
+    };
+
+    return cv;
+  };
+
   // PDF Download Handler
   const handleDownloadPdf = async () => {
     const element = printRef.current;
@@ -195,26 +210,19 @@ export default function CreateCV() {
     pdf.save("cv.pdf");
   };
 
-  // Save CV Handler
-  const compileCV = () => {
-    const cv = {
-      id: crypto.randomUUID(),
-      personalDetails: { ...details },
-      professionalSummary: summary,
-      education: [...education],
-      employment: [...employment],
-      references: [...references],
-      hideReferences: hideReferences,
-    };
-
-    return cv;
-  };
-
-  const handleCvSave = () => {
+  const handleCvSave = async () => {
     const newCv = compileCV();
-    setAllDocuments((prev) => [...prev, newCv]);
 
-    console.log(allDocuments);
+    // Capture snapshot
+    const element = printRef.current;
+    const canvas = await html2canvas(element, { scale: 1 });
+    let snapshot = canvas.toDataURL("image/png");
+
+    // Add snapshot to CV object
+    const cvWithSnapshot = { ...newCv, snapshot };
+
+    // Update allDocuments state with new CV (including the snapshot)
+    setAllDocuments((prev) => [...prev, cvWithSnapshot]);
   };
 
   // PREVIEW
