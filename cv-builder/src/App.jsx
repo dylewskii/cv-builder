@@ -11,11 +11,13 @@ import Footer from "./components/Footer";
 import { DataProvider } from "./context/DataContext";
 
 export default function App() {
+  // CV Create Mode State
   const [isCreating, setIsCreating] = useState(false);
+  const handleCreateClick = () => setIsCreating(!isCreating);
 
-  function handleCreateClick() {
-    isCreating ? setIsCreating(false) : setIsCreating(true);
-  }
+  // Modal States
+  const [hidden, setHidden] = useState(false);
+  const onModalClick = () => setHidden(!hidden);
 
   return (
     <>
