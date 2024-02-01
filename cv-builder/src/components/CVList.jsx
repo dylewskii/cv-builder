@@ -12,12 +12,12 @@ export default function CVList({ handleCreateClick }) {
           <CV.Preview>
             {doc.snapshot ? (
               <img
-                src={doc.snapshot}
-                alt="CV preview"
                 className={cvList.imgPreview}
+                src={doc.snapshot}
+                alt="CV Preview"
               />
             ) : (
-              <p>No Preview Available</p>
+              <p>{fName ? `${fName}'s CV` : `CV #${i}`}</p>
             )}
           </CV.Preview>
           <CV.Options>
