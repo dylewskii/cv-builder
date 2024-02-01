@@ -6,11 +6,9 @@ export default function CV({ children }) {
   return <section className={cvList.cvSection}>{children}</section>;
 }
 
-// NEED TO ADD SRC AS AN ARGUMENT ONCE PDF PREVIEW HAS BEEN IMPLEMENTED
 CV.Preview = ({ onClick, children }) => {
   return (
     <div className={cvList.cvPreview} onClick={onClick}>
-      {/* <img alt="CV preview" /> */}
       {children}
     </div>
   );
