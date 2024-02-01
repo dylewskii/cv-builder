@@ -10,7 +10,15 @@ export default function CVList({ handleCreateClick }) {
       {allDocuments.map((doc, i) => (
         <CV key={doc.id}>
           <CV.Preview>
-            <img alt="CV preview" />
+            {doc.snapshot ? (
+              <img
+                src={doc.snapshot}
+                alt="CV preview"
+                className={cvList.imgPreview}
+              />
+            ) : (
+              <p>No Preview Available</p>
+            )}
           </CV.Preview>
           <CV.Options>
             <CV.Name>
