@@ -2,11 +2,11 @@ import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import cvList from "../styles/CVList.module.css";
 
-export default function CV({ children }) {
+export default function CVCard({ children }) {
   return <section className={cvList.cvSection}>{children}</section>;
 }
 
-CV.Preview = ({ onClick, children }) => {
+CVCard.Preview = ({ onClick, children }) => {
   return (
     <div className={cvList.cvPreview} onClick={onClick}>
       {children}
@@ -14,15 +14,15 @@ CV.Preview = ({ onClick, children }) => {
   );
 };
 
-CV.Options = ({ children }) => {
+CVCard.Options = ({ children }) => {
   return <div className={cvList.cvOptions}>{children}</div>;
 };
 
-CV.Name = ({ children }) => {
+CVCard.Name = ({ children }) => {
   return <p className={cvList.cvName}>{children}</p>;
 };
 
-CV.Nav = ({ cvId }) => {
+CVCard.Nav = ({ cvId }) => {
   const { handleDeleteCv } = useContext(DataContext);
   return (
     <nav className={cvList.cvNav}>

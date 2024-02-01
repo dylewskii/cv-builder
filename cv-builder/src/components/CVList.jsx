@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import cvList from "../styles/CVList.module.css";
-import CV from "./CV";
+import CVCard from "./CVCard";
 
 export default function CVList({ handleCreateClick }) {
   const { allDocuments } = useContext(DataContext);
   return (
     <main className={cvList.cvContainer}>
       {allDocuments.map((doc, i) => (
-        <CV key={doc.id}>
-          <CV.Preview>
+        <CVCard key={doc.id}>
+          <CVCard.Preview>
             {doc.snapshot ? (
               <img
                 className={cvList.imgPreview}
@@ -19,19 +19,19 @@ export default function CVList({ handleCreateClick }) {
             ) : (
               <p>{fName ? `${fName}'s CV` : `CV #${i}`}</p>
             )}
-          </CV.Preview>
-          <CV.Options>
-            <CV.Name>
+          </CVCard.Preview>
+          <CVCard.Options>
+            <CVCard.Name>
               {`${doc.personalDetails.fName} ${doc.personalDetails.lName}`}
-            </CV.Name>
+            </CVCard.Name>
             <p>Created: {/* need to render the creation date */}</p>
-            <CV.Nav cvId={doc.id} />
-          </CV.Options>
-        </CV>
+            <CVCard.Nav cvId={doc.id} />
+          </CVCard.Options>
+        </CVCard>
       ))}
 
-      <CV key={crypto.randomUUID()}>
-        <CV.Preview onClick={handleCreateClick}>
+      <CVCard key={crypto.randomUUID()}>
+        <CVCard.Preview onClick={handleCreateClick}>
           <svg
             className={cvList.plusIcon}
             xmlns="http://www.w3.org/2000/svg"
@@ -45,15 +45,15 @@ export default function CVList({ handleCreateClick }) {
               d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"
             />
           </svg>
-        </CV.Preview>
-        <CV.Options>
-          <CV.Name>Create a CV</CV.Name>
+        </CVCard.Preview>
+        <CVCard.Options>
+          <CVCard.Name>Create a CV</CVCard.Name>
           <p>
             Create a tailored CV for each job application - increase your
             chances of getting hired!
           </p>
-        </CV.Options>
-      </CV>
+        </CVCard.Options>
+      </CVCard>
     </main>
   );
 }
