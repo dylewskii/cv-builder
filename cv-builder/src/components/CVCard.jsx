@@ -22,13 +22,13 @@ CVCard.Name = ({ children }) => {
   return <p className={cvList.cvName}>{children}</p>;
 };
 
-CVCard.Nav = ({ cvId }) => {
-  const { handleDeleteCv } = useContext(DataContext);
+CVCard.Nav = ({ cvId, src }) => {
+  const { handleDeleteCv, handleCvPreview } = useContext(DataContext);
   return (
     <nav className={cvList.cvNav}>
       <ul>
         <li>
-          <a>Preview</a>
+          <a onClick={() => handleCvPreview(src)}>Preview</a>
         </li>
         <li>
           <a>Edit</a>
