@@ -4,7 +4,7 @@ import { useState } from "react";
 import appCSS from "./styles/App.module.css";
 // Components
 import Header from "./components/Header";
-import FilterableCVTable from "./components/FilterableCVTable";
+import CVHeader from "./components/CVHeader";
 import CVList from "./components/CVList";
 import CreateCV from "./components/CreateCV";
 import Footer from "./components/Footer";
@@ -26,12 +26,12 @@ export default function App() {
         <div className={appCSS.wrapper}>
           {!isCreating ? (
             <>
-              <FilterableCVTable handleCreateClick={handleCreateClick} />
+              <CVHeader handleCreateClick={handleCreateClick} />
               <CVList handleCreateClick={handleCreateClick} />
             </>
           ) : (
             <>
-              <FilterableCVTable
+              <CVHeader
                 isCreating={isCreating}
                 handleCreateClick={handleCreateClick}
               />

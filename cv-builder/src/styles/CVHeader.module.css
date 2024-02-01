@@ -9,11 +9,11 @@
   margin: 1rem 0;
 }
 
-.optionsNav ul {
+/* .optionsNav ul {
   display: flex;
   justify-content: flex-start;
   gap: 2rem;
-}
+} */
 
 .btn {
   position: absolute;
