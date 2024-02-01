@@ -11,9 +11,14 @@ export const DataProvider = ({ children }) => {
     );
   };
 
+  const handleCvPreview = (src) => {
+    console.log("previewing");
+    console.log(src);
+  };
+
   return (
     <DataContext.Provider
-      value={{ allDocuments, setAllDocuments, handleDeleteCv }}
+      value={{ allDocuments, setAllDocuments, handleDeleteCv, handleCvPreview }}
     >
       {children}
     </DataContext.Provider>
