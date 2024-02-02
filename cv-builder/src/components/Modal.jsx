@@ -1,10 +1,10 @@
 import modalCSS from "../styles/Modal.module.css";
 
-export default function Modal({ hidden, children }) {
-  if (hidden) return;
+export default function Modal({ visible, children }) {
+  if (!visible) return;
 
   return (
-    <dialog className={modalCSS.modal} open={hidden}>
+    <dialog className={modalCSS.modal} open={visible}>
       {children}
     </dialog>
   );
@@ -14,11 +14,6 @@ Modal.Content = ({ children }) => {
   return <div>{children}</div>;
 };
 
-Modal.Controls = ({ onModalClick }) => {
-  return (
-    <div className={modalCSS.controls}>
-      <button onClick={onModalClick}>Cancel</button>
-      <button onClick={onModalClick}>Confirm</button>
-    </div>
-  );
+Modal.Controls = ({ children }) => {
+  return <div className={modalCSS.controls}>{children}</div>;
 };
