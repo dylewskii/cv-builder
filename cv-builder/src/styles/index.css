@@ -49,12 +49,18 @@ h6 {
 
 p,
 a,
-label,
+input,
+textarea,
 button,
 ul,
 li,
 ::placeholder {
   font-family: "Main-Regular";
+}
+
+label,
+textarea {
+  font-family: "Main-Medium";
 }
 
 /* Reset */
