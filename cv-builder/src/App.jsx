@@ -1,10 +1,8 @@
 // React
 import { useState, useContext } from "react";
-import DataContext from "./context/DataContext";
 import { DataProvider } from "./context/DataContext";
 // CSS
 import appCSS from "./styles/App.module.css";
-import modalCSS from "./styles/Modal.module.css";
 // Components
 import Header from "./components/Header";
 import CVHeader from "./components/CVHeader";
