@@ -3,9 +3,11 @@ import headerCSS from "../styles/CVHeader.module.css";
 export default function CVHeader({ isCreating, handleCreateClick }) {
   return (
     <div className={headerCSS.container}>
-      <h2 className={headerCSS.heading}>All Resumes</h2>
+      <h2 className={headerCSS.heading}>
+        {isCreating ? "Create Your CV" : "All Resumes"}
+      </h2>
       <div className={headerCSS.options}>
-        {/* <nav className={headerCSS.optionsNav}>
+        {/* <nav className={tableCSS.optionsNav}>
           <ul>
             <li>
               <a href="">Resumes</a>
