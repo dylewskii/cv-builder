@@ -23,6 +23,7 @@ export default function App() {
     setPreviewSrc(src);
     setShowModal(true);
   };
+  const onModalHide = () => setShowModal(false);
 
   return (
     <>
@@ -48,13 +49,10 @@ export default function App() {
           )}
         </div>
         {showModal && (
-          <Modal visible={showModal}>
+          <Modal visible={showModal} onModalHide={onModalHide}>
             <Modal.Content>
               <img src={previewSrc} alt="CV Preview" />
             </Modal.Content>
-            <Modal.Controls>
-              <button onClick={() => setShowModal(false)}>Close</button>
-            </Modal.Controls>
           </Modal>
         )}
       </DataProvider>
