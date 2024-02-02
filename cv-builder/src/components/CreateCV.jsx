@@ -14,11 +14,17 @@ import Education from "./Forms/Education";
 import References from "./Forms/References";
 // Previews
 import Preview from "./Previews/Preview";
+// Icons
+import { FaCheck } from "react-icons/fa";
 
 export default function CreateCV() {
   const { allDocuments, setAllDocuments } = useContext(DataContext);
 
+  // Determines which elements should be downloaded to PDF
   const printRef = useRef();
+
+  // Has the CV been saved flag
+  const [isSaved, setIsSaved] = useState(false);
 
   // Personal Details State
   const [details, setDetails] = useState({
@@ -225,6 +231,7 @@ export default function CreateCV() {
 
     // Update allDocuments state with new CV (including the snapshot)
     setAllDocuments((prev) => [...prev, cvWithSnapshot]);
+    setIsSaved(true);
   };
 
   // PREVIEW
@@ -232,7 +239,13 @@ export default function CreateCV() {
     <>
       <div className={createCSS.controls}>
         <button onClick={handleDownloadPdf}>Download PDF</button>
-        <button onClick={handleCvSave}>Save CV</button>
+        {isSaved ? (
+          <button onClick={handleCvSave}>
+            Saved <FaCheck color="green" />
+          </button>
+        ) : (
+          <button onClick={handleCvSave}>Save CV</button>
+        )}
       </div>
       <div className={createCSS.createContainer}>
         <Preview
