@@ -1,23 +1,30 @@
 // React
-import { useState } from "react";
+import { useState, useContext } from "react";
+import DataContext from "./context/DataContext";
+import { DataProvider } from "./context/DataContext";
 // CSS
 import appCSS from "./styles/App.module.css";
+import modalCSS from "./styles/Modal.module.css";
 // Components
 import Header from "./components/Header";
 import CVHeader from "./components/CVHeader";
 import CVList from "./components/CVList";
 import CreateCV from "./components/CreateCV";
 import Footer from "./components/Footer";
-import { DataProvider } from "./context/DataContext";
+import Modal from "./components/Modal";
 
 export default function App() {
-  // CV Create Mode State
+  // State initialisation
   const [isCreating, setIsCreating] = useState(false);
-  const handleCreateClick = () => setIsCreating(!isCreating);
+  const [showModal, setShowModal] = useState(false);
+  const [previewSrc, setPreviewSrc] = useState("");
 
-  // Modal States
-  const [hidden, setHidden] = useState(false);
-  const onModalClick = () => setHidden(!hidden);
+  // Handlers
+  const handleCreateClick = () => setIsCreating(!isCreating);
+  const handleCvPreview = (src) => {
+    setPreviewSrc(src);
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -27,7 +34,10 @@ export default function App() {
           {!isCreating ? (
             <>
               <CVHeader handleCreateClick={handleCreateClick} />
-              <CVList handleCreateClick={handleCreateClick} />
+              <CVList
+                handleCreateClick={handleCreateClick}
+                handleCvPreview={handleCvPreview}
+              />
             </>
           ) : (
             <>
@@ -39,6 +49,16 @@ export default function App() {
             </>
           )}
         </div>
+        {showModal && (
+          <Modal visible={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Content>
+              <img src={previewSrc} alt="CV Preview" />
+            </Modal.Content>
+            <Modal.Controls>
+              <button onClick={() => setShowModal(false)}>Close</button>
+            </Modal.Controls>
+          </Modal>
+        )}
       </DataProvider>
       <Footer />
     </>

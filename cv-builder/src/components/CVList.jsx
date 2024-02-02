@@ -3,7 +3,7 @@ import DataContext from "../context/DataContext";
 import cvList from "../styles/CVList.module.css";
 import CVCard from "./CVCard";
 
-export default function CVList({ handleCreateClick }) {
+export default function CVList({ handleCreateClick, handleCvPreview }) {
   const { allDocuments } = useContext(DataContext);
   return (
     <main className={cvList.cvContainer}>
@@ -25,7 +25,11 @@ export default function CVList({ handleCreateClick }) {
               {`${doc.personalDetails.fName} ${doc.personalDetails.lName}`}
             </CVCard.Name>
             <p>Created: {/* need to render the creation date */}</p>
-            <CVCard.Nav cvId={doc.id} src={doc.snapshot} />
+            <CVCard.Nav
+              cvId={doc.id}
+              src={doc.snapshot}
+              handleCvPreview={handleCvPreview}
+            />
           </CVCard.Options>
         </CVCard>
       ))}

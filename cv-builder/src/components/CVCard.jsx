@@ -22,8 +22,9 @@ CVCard.Name = ({ children }) => {
   return <p className={cvList.cvName}>{children}</p>;
 };
 
-CVCard.Nav = ({ cvId, src }) => {
-  const { handleDeleteCv, handleCvPreview } = useContext(DataContext);
+CVCard.Nav = ({ cvId, src, handleCvPreview }) => {
+  const { handleDeleteCv } = useContext(DataContext);
+
   return (
     <nav className={cvList.cvNav}>
       <ul>
