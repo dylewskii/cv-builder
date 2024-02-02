@@ -4,7 +4,7 @@ export default function CVHeader({ isCreating, handleCreateClick }) {
   return (
     <div className={headerCSS.container}>
       <h2 className={headerCSS.heading}>
-        {isCreating ? "Create Your CV" : "All Resumes"}
+        {isCreating ? "Create Your CV" : "All CVs"}
       </h2>
       <div className={headerCSS.options}>
         {/* <nav className={tableCSS.optionsNav}>
