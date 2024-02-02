@@ -24,7 +24,7 @@ export default function CVList({ handleCreateClick, handleCvPreview }) {
             <CVCard.Name>
               {`${doc.personalDetails.fName} ${doc.personalDetails.lName}`}
             </CVCard.Name>
-            <p>Created: {/* need to render the creation date */}</p>
+            <p>Created: {doc.createdDate}</p>
             <CVCard.Nav
               cvId={doc.id}
               src={doc.snapshot}

@@ -212,14 +212,16 @@ export default function CreateCV() {
 
   const handleCvSave = async () => {
     const newCv = compileCV();
+    let createdDate = new Date();
+    createdDate = createdDate.toLocaleDateString();
 
     // Capture snapshot
     const element = printRef.current;
     const canvas = await html2canvas(element, { scale: 1 });
     let snapshot = canvas.toDataURL("image/png");
 
-    // Add snapshot to CV object
-    const cvWithSnapshot = { ...newCv, snapshot };
+    // Add snapshot & date to CV object
+    const cvWithSnapshot = { ...newCv, snapshot, createdDate };
 
     // Update allDocuments state with new CV (including the snapshot)
     setAllDocuments((prev) => [...prev, cvWithSnapshot]);
