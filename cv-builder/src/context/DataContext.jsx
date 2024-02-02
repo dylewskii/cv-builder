@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const DataContext = createContext();
+const DataContext = createContext("");
 
 export const DataProvider = ({ children }) => {
   const [allDocuments, setAllDocuments] = useState([]);
@@ -11,14 +11,13 @@ export const DataProvider = ({ children }) => {
     );
   };
 
-  const handleCvPreview = (src) => {
-    console.log("previewing");
-    console.log(src);
-  };
-
   return (
     <DataContext.Provider
-      value={{ allDocuments, setAllDocuments, handleDeleteCv, handleCvPreview }}
+      value={{
+        allDocuments,
+        setAllDocuments,
+        handleDeleteCv,
+      }}
     >
       {children}
     </DataContext.Provider>
