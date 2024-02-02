@@ -18,6 +18,45 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: "Main-Bold";
+  src: url("../assets/fonts/Manrope-Bold.otf");
+}
+
+@font-face {
+  font-family: "Main-Medium";
+  src: url("../assets/fonts/Manrope-Medium.otf");
+}
+
+@font-face {
+  font-family: "Main-Regular";
+  src: url("../assets/fonts/Manrope-Regular.otf");
+}
+
+@font-face {
+  font-family: "Main-Light";
+  src: url("../assets/fonts/Manrope-Light.otf");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Main-Bold";
+}
+
+p,
+a,
+label,
+button,
+ul,
+li,
+::placeholder {
+  font-family: "Main-Regular";
+}
+
 /* Reset */
 *,
 *::before,
@@ -81,7 +120,7 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
+  /* font-family: inherit; */
   background-color: var(--dark-black);
   cursor: pointer;
 }
