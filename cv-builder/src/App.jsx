@@ -48,7 +48,7 @@ export default function App() {
           )}
         </div>
         {showModal && (
-          <Modal visible={showModal} onHide={() => setShowModal(false)}>
+          <Modal visible={showModal}>
             <Modal.Content>
               <img src={previewSrc} alt="CV Preview" />
             </Modal.Content>
