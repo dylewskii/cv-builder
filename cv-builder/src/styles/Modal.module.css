@@ -1,12 +1,13 @@
 .modal {
   display: flex;
+  justify-content: center;
   position: fixed;
-  background-color: var(--light-cream);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   min-height: 400px;
   min-width: 250px;
+  background-color: var(--light-cream);
   padding: 3rem 1rem 1rem 1rem;
   border: none;
   border-radius: 5px;
