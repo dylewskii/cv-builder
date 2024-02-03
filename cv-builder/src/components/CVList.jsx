@@ -5,6 +5,9 @@ import CVCard from "./CVCard";
 
 export default function CVList({ handleCreateClick, handleCvPreview }) {
   const { allDocuments } = useContext(DataContext);
+  const checkNameValidity = (first, last, index) => {
+    return first || last ? `${first} ${last}`.trim() : `Untitled ${index + 1}`;
+  };
   return (
     <main className={cvList.cvContainer}>
       {allDocuments.map((doc, i) => (
@@ -22,7 +25,11 @@ export default function CVList({ handleCreateClick, handleCvPreview }) {
           </CVCard.Preview>
           <CVCard.Options>
             <CVCard.Name>
-              {`${doc.personalDetails.fName} ${doc.personalDetails.lName}`}
+              {checkNameValidity(
+                doc.personalDetails.fName,
+                doc.personalDetails.lName,
+                i
+              )}
             </CVCard.Name>
             <p className={cvList.createdDate}>Created: {doc.createdDate}</p>
             <CVCard.Nav
