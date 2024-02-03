@@ -9,6 +9,10 @@
 }
 
 .header > h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   color: #cbc69f;
   font-size: clamp(2rem, 0.8571rem + 4.5714vw, 4rem);
 }
