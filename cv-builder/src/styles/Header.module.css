@@ -9,10 +9,13 @@
 }
 
 .header > h1 {
+  color: #cbc69f;
   font-size: clamp(2rem, 0.8571rem + 4.5714vw, 4rem);
 }
 
 .profileIcon {
+  font-size: 2rem;
+  color: #cbc19f;
   cursor: pointer;
 }
 
