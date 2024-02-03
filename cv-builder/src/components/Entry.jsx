@@ -69,7 +69,9 @@ export default function Entry({
   return (
     <div className={`${entryCSS.entry} ${isExpanded && entryCSS.expanded}`}>
       <h4>
-        {currentData[fieldNames[0]]} - {currentData[fieldNames[1]]}
+        {currentData[fieldNames[0]] !== undefined
+          ? `${currentData[fieldNames[0]]} - ${currentData[fieldNames[1]]}`
+          : `${currentData[fieldNames[1]]} at ${currentData[fieldNames[2]]}`}
       </h4>
       {isExpanded && (
         <EntryForm
@@ -107,6 +109,8 @@ function EntryForm({
         return "Job Title";
       case "dateRange":
         return "Start & End Date";
+      case "hide":
+        return;
       default:
         return capitalizeFirstLetter(field);
     }
@@ -114,20 +118,23 @@ function EntryForm({
 
   return (
     <div className={entryCSS.formExpanded}>
-      {fieldNames.map((field, i) => (
-        <div key={field}>
-          <label htmlFor={`entryFormInput-${i}`}>{getLabel(field)}</label>
-          <input
-            id={`entryFormInput-${i}`}
-            disabled={!isBeingEdited}
-            type="text"
-            name={field}
-            placeholder={currentData[field] ? currentData[field] : ""}
-            value={editDraft[field]}
-            onChange={(e) => handleEntryEdit(e, field)}
-          />
-        </div>
-      ))}
+      {fieldNames.map((field, i) => {
+        if (field === "hide") return null;
+        return (
+          <div key={field}>
+            <label htmlFor={`entryFormInput-${i}`}>{getLabel(field)}</label>
+            <input
+              id={`entryFormInput-${i}`}
+              disabled={!isBeingEdited}
+              type="text"
+              name={field}
+              placeholder={currentData[field] ? currentData[field] : ""}
+              value={editDraft[field]}
+              onChange={(e) => handleEntryEdit(e, field)}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }
