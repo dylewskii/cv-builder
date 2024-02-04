@@ -1,25 +1,35 @@
+.createContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0rem 2rem;
+}
+
 .controls {
+  grid-column: span 2;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0rem 4rem;
   gap: 1rem;
 }
 
 .controls > button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
+  min-width: 40%;
+  min-height: 50%;
+  font-size: 0.7rem;
 }
 
-.createContainer {
-  display: flex;
-  flex-direction: column;
-  padding: 0rem 2rem;
-  gap: 3rem;
+.previewPanel {
+  grid-row: 2;
+}
+
+.editPanel {
+  grid-row: 3;
+}
+
+h3 {
+  color: var(--light-cream);
+  letter-spacing: 0.3rem;
 }
 
 /* --- EDIT --- */
@@ -38,9 +48,8 @@
   font-size: 1.5rem;
 }
 
-h3 + label,
-p + label {
-  margin-top: 1.5rem;
+h3 {
+  margin: 1.5rem 0 0.5rem 0;
 }
 
 /* Every label not inside a div */
@@ -58,10 +67,6 @@ p + label {
   border: none;
 }
 
-.editPanel form textarea {
-  margin-top: 1rem;
-}
-
 .hideRefs {
   display: flex;
   justify-content: center;
@@ -70,21 +75,29 @@ p + label {
 }
 
 @media (min-width: 900px) {
-  .controls {
-    width: 50%;
+  .createContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 
-  .createContainer {
-    flex-direction: row;
+  .controls {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    max-height: 5rem;
   }
 
   .previewPanel {
-    width: calc(70% - 1rem);
-    min-width: 350px;
-    height: calc(65vh + 1rem);
+    grid-column: 1;
+    grid-row: 2;
   }
 
-  .editPanel form {
-    flex-grow: 1;
+  .editPanel {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .controls > button {
+    min-width: 175px;
+    padding: 1em 3em;
   }
 }
