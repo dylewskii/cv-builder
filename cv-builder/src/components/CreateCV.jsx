@@ -17,6 +17,8 @@ import Preview from "./Previews/Preview";
 // Icons
 import { FaCheck, FaRegSave } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
+import Lottie from "lottie-react";
+import animationData from "../assets/animations/loading.json";
 
 export default function CreateCV() {
   const { allDocuments, setAllDocuments } = useContext(DataContext);
@@ -24,8 +26,9 @@ export default function CreateCV() {
   // Determines which elements should be downloaded to PDF
   const printRef = useRef();
 
-  // Has the CV been saved flag
+  // saved/isDownloading flags
   const [isSaved, setIsSaved] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   // Personal Details State
   const [details, setDetails] = useState({
@@ -199,6 +202,7 @@ export default function CreateCV() {
 
   // PDF Download Handler
   const handleDownloadPdf = async () => {
+    setIsDownloading(true);
     const element = printRef.current;
 
     const scale = 5; // increased scale to improve quality
@@ -215,6 +219,7 @@ export default function CreateCV() {
 
     pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
     pdf.save("cv.pdf");
+    setIsDownloading(false);
   };
 
   const handleCvSave = async () => {
@@ -240,10 +245,31 @@ export default function CreateCV() {
     <>
       <div className={createCSS.createContainer}>
         <section className={createCSS.controls}>
-          <button onClick={handleDownloadPdf}>
-            <FaDownload />
-            Download PDF
-          </button>
+          {isDownloading ? (
+            <button disabled>
+              <Lottie
+                className={createCSS.loading}
+                autoplay={true}
+                loop={true}
+                animationData={animationData}
+              />
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setIsDownloading(true);
+
+                setTimeout(() => {
+                  handleDownloadPdf().finally(() => {
+                    setIsDownloading(false);
+                  });
+                }, 1350);
+              }}
+            >
+              Download PDF
+            </button>
+          )}
+
           {isSaved ? (
             <button onClick={handleCvSave}>
               Saved <FaCheck color="green" />
