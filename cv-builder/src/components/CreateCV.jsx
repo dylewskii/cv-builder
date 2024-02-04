@@ -266,6 +266,7 @@ export default function CreateCV() {
                 }, 1350);
               }}
             >
+              <FaDownload />
               Download PDF
             </button>
           )}
