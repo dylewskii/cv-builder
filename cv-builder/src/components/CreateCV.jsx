@@ -237,17 +237,17 @@ export default function CreateCV() {
   // PREVIEW
   return (
     <>
-      <div className={createCSS.controls}>
-        <button onClick={handleDownloadPdf}>Download PDF</button>
-        {isSaved ? (
-          <button onClick={handleCvSave}>
-            Saved <FaCheck color="green" />
-          </button>
-        ) : (
-          <button onClick={handleCvSave}>Save CV</button>
-        )}
-      </div>
       <div className={createCSS.createContainer}>
+        <section className={createCSS.controls}>
+          <button onClick={handleDownloadPdf}>Download PDF</button>
+          {isSaved ? (
+            <button onClick={handleCvSave}>
+              Saved <FaCheck color="green" />
+            </button>
+          ) : (
+            <button onClick={handleCvSave}>Save CV</button>
+          )}
+        </section>
         <Preview
           innerRef={printRef}
           className={previewCSS.previewPanel}
