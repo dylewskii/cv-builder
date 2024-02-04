@@ -15,7 +15,8 @@ import References from "./Forms/References";
 // Previews
 import Preview from "./Previews/Preview";
 // Icons
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaRegSave } from "react-icons/fa";
+import { FaDownload } from "react-icons/fa6";
 
 export default function CreateCV() {
   const { allDocuments, setAllDocuments } = useContext(DataContext);
@@ -239,13 +240,19 @@ export default function CreateCV() {
     <>
       <div className={createCSS.createContainer}>
         <section className={createCSS.controls}>
-          <button onClick={handleDownloadPdf}>Download PDF</button>
+          <button onClick={handleDownloadPdf}>
+            <FaDownload />
+            Download PDF
+          </button>
           {isSaved ? (
             <button onClick={handleCvSave}>
               Saved <FaCheck color="green" />
             </button>
           ) : (
-            <button onClick={handleCvSave}>Save CV</button>
+            <button onClick={handleCvSave}>
+              <FaRegSave />
+              Save CV
+            </button>
           )}
         </section>
         <Preview
