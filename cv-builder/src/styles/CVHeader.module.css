@@ -18,10 +18,23 @@
 } */
 
 .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
   position: absolute;
   top: 40%;
   right: 5%;
   padding: 1em 2em;
+}
+
+.icon {
+  font-size: 0.8rem;
+}
+
+.btn:hover .icon {
+  transform: scale(1.5) rotate(90deg);
+  color: var(--dark-active);
 }
 
 @media (max-width: 650px) {
