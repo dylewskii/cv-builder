@@ -1,4 +1,5 @@
 import headerCSS from "../styles/CVHeader.module.css";
+import { FaPlus } from "react-icons/fa";
 
 export default function CVHeader({ isCreating, handleCreateClick }) {
   return (
@@ -23,7 +24,7 @@ export default function CVHeader({ isCreating, handleCreateClick }) {
           </button>
         ) : (
           <button onClick={handleCreateClick} className={headerCSS.btn}>
-            &#43; Create CV
+            Create CV <FaPlus className={headerCSS.icon} />
           </button>
         )}
       </div>
