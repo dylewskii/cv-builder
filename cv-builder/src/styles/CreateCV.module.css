@@ -78,6 +78,14 @@ h3 {
   margin: 1rem 0;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 1rem;
+  max-width: 2.5rem;
+}
+
 @media (min-width: 900px) {
   .createContainer {
     grid-template-columns: 1fr 1fr;
