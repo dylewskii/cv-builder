@@ -32,12 +32,6 @@ CVCard.Nav = ({ cvId, src, handleCvPreview }) => {
           <a onClick={() => handleCvPreview(src)}>Preview</a>
         </li>
         <li>
-          <a>Edit</a>
-        </li>
-        <li>
-          <a>Download</a>
-        </li>
-        <li>
           <a onClick={() => handleDeleteCv(cvId)}>Delete</a>
         </li>
       </ul>
