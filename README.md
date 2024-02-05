@@ -7,10 +7,12 @@ Live 👉 https://vitae-vine.netlify.app/
 ## Desktop Version:
 
 ![project desktop outcome](./public/final-outcome.png)
+![project mobile outcome](./public/create-desktop.png)
 
 ## Mobile Version:
 
 ![project mobile outcome](./public/final-outcome-mobile.png)
+![project mobile outcome](./public/create-mobile.png)
 
 ## Project Objectives:
 
@@ -20,6 +22,8 @@ Live 👉 https://vitae-vine.netlify.app/
 - general information like name, email and phone number.
 - educational experience (school name, title of study and date of study)
 - practical experience (company name, position title, main responsibilities of a job, dates worked at given company).
+
+3. Allow users to download CV as a PDF.
 
 ## Future Improvements:
 
