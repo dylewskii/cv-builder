@@ -7,13 +7,13 @@ import { jsPDF } from "jspdf";
 import createCSS from "../styles/CreateCV.module.css";
 import previewCSS from "../styles/Preview.module.css";
 // Forms
-import PersonalDetails from "./Forms/PersonalDetails";
-import ProfessionalSummary from "./Forms/ProfessionalSummary";
-import EmploymentHistory from "./Forms/EmploymentHistory";
-import Education from "./Forms/Education";
-import References from "./Forms/References";
+import PersonalDetails from "./forms/PersonalDetails";
+import ProfessionalSummary from "./forms/ProfessionalSummary";
+import EmploymentHistory from "./forms/EmploymentHistory";
+import Education from "./forms/Education";
+import References from "./forms/References";
 // Previews
-import Preview from "./Previews/Preview";
+import Preview from "./previews/Preview";
 // Icons
 import { FaCheck, FaRegSave } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
